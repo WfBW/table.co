@@ -1,0 +1,169 @@
+/* left-bar */
+.left-bar {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 225px;
+    height: 100vh;
+    background: #fff;
+    padding-top: 40px;
+    z-index: 1;
+}
+
+.lmenu {
+    display: block;
+    margin: 25px auto;
+    padding: 0px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+.lmenu-item {
+    padding: 10px 0px;
+    padding-left: 75px;
+    position: relative;
+    cursor: pointer;
+    color: #C4CAD8;
+    border-left: 4px solid #fff;
+    margin: 10px 0px;
+    transition-property: background;
+    transition-duration: 0.3s;
+}
+
+.lmenu-item:hover {
+    background: #fcfcfc;
+    border-color: #fcfcfc;
+}
+
+.lmenu-item::before {
+    content: '';
+    position: absolute;
+    top: 10px; left: 30px;
+    width: 30px;
+    height: 24px;
+    filter: grayscale(1);
+    opacity: 0.5;
+}
+
+.lmenu-item:nth-child(1)::before {
+    background: url(../IMG/edit.svg) no-repeat center;
+}
+
+.lmenu-item:nth-child(2)::before {
+    background: url(../IMG/checked.svg) no-repeat center;
+}
+
+.lmenu-item:nth-child(3)::before {
+    background: url(../IMG/avatar1.svg) no-repeat center;
+}
+
+.lmenu-item:nth-child(4)::before {
+    background: url(../IMG/upload-to-cloud.svg) no-repeat center;
+}
+
+.active{
+    transition-property: all;
+    transition-duration: 0.3s;
+}
+
+.lmenu .active{
+    background: #F7F8FA;
+    border-left: 4px solid #299EFF;
+    opacity: 1;
+    color: #91959F;
+}
+
+.active::before{
+    filter: grayscale(0);
+    opacity: 1;
+}
+/* top-bar */
+
+.project-logo {
+    position: absolute;
+    top: 10px; left: 45vw;
+    width: 100px;
+    height: 30px;
+    background: url(../IMG/Short_logo.svg) no-repeat center;
+    
+}
+
+.top-bar {
+    position: relative;
+    top: 0px; left: 0px;
+    width: 100%;
+    height: 50px;
+    background: #fff;
+    padding: 10px;
+    z-index: 2;
+}
+
+.top-bar > .btn {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    opacity: 0.8;
+    outline: none;
+    padding: 0px 20px;
+}
+
+.top-bar > .btn:hover {
+    opacity: 1;
+}
+
+.top-bar > .btn-menu {
+    background: url(../IMG/close-menu.svg) no-repeat center;
+    background-size: 20px cover;
+    
+}
+
+.top-bar > .btn-settings {
+    background: url(../IMG/settings-work-tool.svg) no-repeat center;
+    background-size: 20px cover;
+}
+
+.top-bar > .btn-notification {
+    background: url(../IMG/Notithication.svg) no-repeat center;
+    background-size: 20px cover;
+}
+
+.top-bar > .btn-mail {
+    background: url(../IMG/Chat.svg) center;
+    background-size: 20px cover;
+    background-repeat: no-repeat;
+    padding: 0px 45px;
+}
+
+.top-bar > .btn:not(.btn-menu) {
+    float: right;
+    margin: 0px 5px;
+}
+
+.top-bar > .avatar {
+    position: relative;
+    top: -2.5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding: 0px;
+    opacity: 1;
+}
+
+.top-bar > .avatar > img {
+    width: 35px;
+    border-radius: 50%;
+}
+
+.top-bar > .btn:not(.avatar) {
+    margin-top: 5px;
+}
+
+.mainPageView {
+    background: #f7f8fa;
+    position: absolute;
+    top: 60px;
+    left: 220px;
+    width: calc(100% - 220px);
+}

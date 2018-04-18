@@ -1,0 +1,18 @@
+{
+    "main": "index.html",
+    "name": "Table.Co",
+    "description": "",
+    "version": "1.0.0",
+    "keywords": [
+        "manager"
+    ],
+    "window": {
+        "title": "Table.Co",
+        "icon": "icon.png",
+        "toolbar": false,
+        "min_width": 1300,
+        "min_height": 740
+    },
+    "author": "Nameless team",
+    "license": "MIT"
+}

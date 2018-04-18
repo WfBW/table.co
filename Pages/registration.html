@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="../CSS/registration.css">
+    <link rel="stylesheet" href="../CSS/index.css">
+    
+    <script type="text/javascript" src="/JS/reg.js"></script>
+</head>
+
+<body>
+    <div class="form-reg">
+        <div class="short_logo"></div>
+        <div class="greeting">
+            <span class="gr-title">Добро пожаловать!</span><br>
+            <span class="gr-description">Пожалуйста, укажите Ваши личные данные.</span>
+        </div>
+        <div class="stages">
+            <div class="stage stage-1">
+                <div class="stage-title">Шаг первый:</div>
+                <input type="text" id="name" name="name" placeholder="Ваше имя" required autofocus>
+                <input type="text" id="fname" name="fname" placeholder="Ваша фамилия" required>
+                <input type="text" id="otch" name="otch" placeholder="Ваше отчество" required>
+                
+                <label for="bday">Дата рождения</label>
+                <input type="date" id="bday" name="bday">
+                
+                <input type="button" value="ДАЛЕЕ ➜" name="btn-reg" class="btn btn-st1">
+            </div>
+
+            <div class="stage stage-2">
+                <div class="stage-title">Шаг второй:</div>
+                <input type="text" id="login" name="login" placeholder="Придумайте логин" required>
+                <input type="password" id="password1" name="password1" placeholder="Придумайте пароль" required>
+                <input type="password" id="password2" name="password2" placeholder="Повторите пароль" required>
+                <input type="email" id="email" name="email" placeholder="Введите E-mail " required>
+                
+                <input type="button" value="ДАЛЕЕ ➜" name="btn-reg" class="btn btn-st2">
+            </div>
+
+            <div class="stage stage-3">
+                <div class="stage-title">Шаг третий:</div>
+                <select id="specialty" name="specialty" placeholder="Выберите специальность" required>
+                    <option>Программист</option>
+                    <option>Дизайнер</option>
+                    <option>Гейм-дизайнер</option>
+                    <option>SEO</option>
+                    <option>Менеджер</option>
+                    <option>Музыкант</option>
+                </select>
+                <input type="text" id="tel" name="tel" placeholder="Введите телефон" required>
+                <input type="text" id="social" name="social" placeholder="Ссылка на соц. сеть">
+                
+                <textarea rows="4" id="about" placeholder="О себе"></textarea>
+                
+                <input type="button" value="Зарегистрироваться" name="btn-reg" class="btn btn-st3">
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

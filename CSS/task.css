@@ -1,0 +1,128 @@
+.content {
+    padding: 10px;
+    padding-left: 170px;
+    height: 100%;
+}
+
+.title-content {
+    font-size: 20px;
+    margin: 10px;
+    font-weight: bold;
+    color: #91959f;
+}
+
+.context {
+    display: inline-block;
+    background: url(../IMG/Context.svg) no-repeat center;
+    background-size: contain;
+    width: 30px;
+    height: 12px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.content > ul {
+    list-style: none;
+}
+
+.status {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: -30px;
+    top: calc(50% - 7.5px);
+    margin: auto 0px;
+    background: #ff432f;
+    border-radius: 50%;
+}
+
+.item-task {
+    position: relative;
+    margin: 20px 0px;
+    background-color: #fff;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
+.item-task .task-block {
+    display: block;
+    background: #fff;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.task-block .task-text {
+    display: inline-block;
+    word-wrap: break-word;
+    width: calc(100% - 300px);
+    font-size: 14px;
+    height: 100%;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+.project-text {
+    color: darkgrey;
+    font-size: 12px;
+    word-wrap: break-word;
+}
+
+.task-date {
+    font-size: 12px;
+    word-wrap: break-word;
+}
+
+.check-task {
+    display: inline-block;
+    vertical-align: middle;
+}
+.tright {
+    float: right;
+}
+
+.tasks-right-block {
+    display: inline;
+    height: 50%;
+    border-left: 1px solid #E6E6E6;
+    padding-left: 10px;
+}
+.tasks-right-block > span{
+    vertical-align: middle;
+}
+.tasks-right-block > div {
+    display: inline;
+}
+
+input[type="checkbox"] {
+    -webkit-appearance: none;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 1px solid rgba(0, 0, 0, .3);
+    outline: none;
+    margin: 0px 20px 0px 20px;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
+input[type="checkbox"]:checked + label {
+    color: #c4cad8;
+}
+
+input[type="checkbox"]:checked:before {
+    content: "";
+    display: block;
+    width: 9px;
+    height: 14px;
+    border: 0 solid #299eff;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotateZ(45deg);
+    margin: -6px 3px;
+    pointer-events: none;
+}
+
+
+.title-content:last-of-type{
+    margin: 40px 0px 0px 0px;
+}

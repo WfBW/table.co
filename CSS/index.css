@@ -1,0 +1,51 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+::-webkit-scrollbar{
+    background: #EBEBEB;
+    border-radius: 7.75px;
+    width: 15.5px;
+    padding: 6px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #DADCE0;
+    width: 6px;
+    border-radius: 7.75px;
+    border: 4px solid #EBEBEB;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; 
+    margin: 0px;
+    background-color: #f7f8fa;
+    overflow: hidden;
+}
+
+.content {
+    padding: 10px 0px 0px 30px;
+    height: 100%;
+}
+
+.title-content {
+    font-size: 20px;
+    margin: 10px;
+    font-weight: bold;
+    color: #91959f;
+}
+
+.context {
+    display: inline-block;
+    background: url(../IMG/Context.svg) no-repeat center;
+    background-size: contain;
+    width: 20px;
+    height: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
