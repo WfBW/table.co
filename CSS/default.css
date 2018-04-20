@@ -1,0 +1,174 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+::-webkit-scrollbar {
+    background: #EBEBEB;
+    border-radius: 7.75px;
+    width: 15.5px;
+    padding: 6px;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #DADCE0;
+    width: 6px;
+    border-radius: 7.75px;
+    border: 4px solid #EBEBEB;
+}
+
+/* Checkbox */
+input[type="checkbox"] {
+    opacity: 0;
+    float: left;
+}
+
+input[type="checkbox"] + label {
+    margin: 0 0 0 10px;
+    position: relative;
+    cursor: pointer;
+    font-size: 16px;
+    color: #3e3e3e;
+}
+
+input[type="checkbox"] + label::before {
+    content: ' ';
+    position: absolute;
+    left: -30px;
+    top: 0px;
+    width: 18px;
+    height: 18px;
+    display: block;
+    background: white;
+    border: 2px solid #29aaff;
+    border-radius: 4px;
+}
+
+input[type="checkbox"] + label::after {
+    content: ' ';
+    position: absolute;
+    left: -30px;
+    top: 0px;
+    width: 16px;
+    height: 16px;
+    display: block;
+    z-index: 1;
+    background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjE4MS4yIDI3MyAxNyAxNiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAxODEuMiAyNzMgMTcgMTYiPjxwYXRoIGQ9Ik0tMzA2LjMgNTEuMmwtMTEzLTExM2MtOC42LTguNi0yNC04LjYtMzQuMyAwbC01MDYuOSA1MDYuOS0yMTIuNC0yMTIuNGMtOC42LTguNi0yNC04LjYtMzQuMyAwbC0xMTMgMTEzYy04LjYgOC42LTguNiAyNCAwIDM0LjNsMjMxLjIgMjMxLjIgMTEzIDExM2M4LjYgOC42IDI0IDguNiAzNC4zIDBsMTEzLTExMyA1MjQtNTI0YzctMTAuMyA3LTI1LjctMS42LTM2eiIvPjxwYXRoIGZpbGw9IiMzNzM3MzciIGQ9Ik0xOTcuNiAyNzcuMmwtMS42LTEuNmMtLjEtLjEtLjMtLjEtLjUgMGwtNy40IDcuNC0zLjEtMy4xYy0uMS0uMS0uMy0uMS0uNSAwbC0xLjYgMS42Yy0uMS4xLS4xLjMgMCAuNWwzLjMgMy4zIDEuNiAxLjZjLjEuMS4zLjEuNSAwbDEuNi0xLjYgNy42LTcuNmMuMy0uMS4zLS4zLjEtLjV6Ii8+PHBhdGggZD0iTTExODcuMSAxNDMuN2wtNTYuNS01Ni41Yy01LjEtNS4xLTEyLTUuMS0xNy4xIDBsLTI1My41IDI1My41LTEwNi4yLTEwNi4yYy01LjEtNS4xLTEyLTUuMS0xNy4xIDBsLTU2LjUgNTYuNWMtNS4xIDUuMS01LjEgMTIgMCAxNy4xbDExNC43IDExNC43IDU2LjUgNTYuNWM1LjEgNS4xIDEyIDUuMSAxNy4xIDBsNTYuNS01Ni41IDI2Mi0yNjJjNS4yLTMuNCA1LjItMTIgLjEtMTcuMXpNMTYzNC4xIDE2OS40bC0zNy43LTM3LjdjLTMuNC0zLjQtOC42LTMuNC0xMiAwbC0xNjkuNSAxNjkuNS03MC4yLTcxLjljLTMuNC0zLjQtOC42LTMuNC0xMiAwbC0zNy43IDM3LjdjLTMuNCAzLjQtMy40IDguNiAwIDEybDc3LjEgNzcuMSAzNy43IDM3LjdjMy40IDMuNCA4LjYgMy40IDEyIDBsMzcuNy0zNy43IDE3NC43LTE3Ni40YzEuNi0xLjcgMS42LTYuOS0uMS0xMC4zeiIvPjwvc3ZnPg==') no-repeat center center;
+    border-radius: 5px;
+    -ms-transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    transition: all .3s ease;
+    -ms-transform: scale(0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 0;
+}
+
+input[type="checkbox"]:checked + label::after {
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+}
+
+input[type="checkbox"]:checked + label {
+    color: #c4cad8;
+}
+/* end-Checkbox */
+
+/* Button */
+button {
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #299eff;
+    padding: 10px 20px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition-property: background;
+    transition-duration: 0.3s;
+}
+
+hr {
+    border: #DDDDDD 0.5px solid;
+    width: 90%;
+    margin: 2px 0px;
+}
+
+/* центральный блок-контент */
+.mainView {
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+/* заголовок блок-контента */
+.mainTitle {
+    font-size: 20px;
+    margin: 15px 0px 12px 30px;
+    font-weight: bold;
+    color: #91959f;
+}
+
+/* Кнопка контекстного меню ... */
+.context-btn {
+    display: inline-block;
+    background: url(../IMG/Context.svg) no-repeat center;
+    background-size: contain;
+    width: 20px;
+    height: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* блок проекты, организации */
+.block-content {
+    position: relative;
+    display: inline-block;
+    width: 360px;
+    height: 500px;
+    padding: 25px 40px 25px 20px;
+    background: #fff;
+    border-radius: 5px;
+    margin: 10px 0px;
+    margin-left: 30px;
+    box-shadow: 0 0 20px -5px #91959f66;
+}
+
+/* Заголовки в блоках название проекта и тп. */
+.caption {
+    display: inline;
+    font-size: 22px;
+    font-weight: bold;
+    color: #3e3e3e;
+}
+
+.manager {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #3e3e3e;
+}
+
+.manager-name {
+    color: #a8acb7;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+/* кнопка в блоке проекты, организации */
+.block-content > .btn-content {
+    position: absolute;
+    bottom: 20px;
+    left: 110px;
+}
+.block-content > .btn-content:hover {
+    background: #2994ef;
+}

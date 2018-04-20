@@ -1,24 +1,7 @@
 .content {
-    padding: 10px;
-    padding-left: 170px;
+    padding-left: 30px;
+    padding-right: 35px;
     height: 100%;
-}
-
-.title-content {
-    font-size: 20px;
-    margin: 10px;
-    font-weight: bold;
-    color: #91959f;
-}
-
-.context {
-    display: inline-block;
-    background: url(../IMG/Context.svg) no-repeat center;
-    background-size: contain;
-    width: 30px;
-    height: 12px;
-    margin-left: 10px;
-    cursor: pointer;
 }
 
 .content > ul {
@@ -93,35 +76,6 @@
 .tasks-right-block > div {
     display: inline;
 }
-
-input[type="checkbox"] {
-    -webkit-appearance: none;
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 1px solid rgba(0, 0, 0, .3);
-    outline: none;
-    margin: 0px 20px 0px 20px;
-    box-sizing: border-box;
-    border-radius: 2px;
-}
-
-input[type="checkbox"]:checked + label {
-    color: #c4cad8;
-}
-
-input[type="checkbox"]:checked:before {
-    content: "";
-    display: block;
-    width: 9px;
-    height: 14px;
-    border: 0 solid #299eff;
-    border-width: 0 2px 2px 0;
-    -webkit-transform: rotateZ(45deg);
-    margin: -6px 3px;
-    pointer-events: none;
-}
-
 
 .title-content:last-of-type{
     margin: 40px 0px 0px 0px;

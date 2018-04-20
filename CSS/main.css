@@ -1,3 +1,10 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0px;
+    background-color: #f7f8fa;
+    overflow: hidden;
+}
+
 /* left-bar */
 .left-bar {
     position: absolute;
@@ -38,7 +45,7 @@
 .lmenu-item::before {
     content: '';
     position: absolute;
-    top: 10px; left: 30px;
+    top: 8px; left: 30px;
     width: 30px;
     height: 24px;
     filter: grayscale(1);

@@ -1,44 +1,3 @@
-.block-content {
-    position: relative;
-    display: inline-block;
-    width: 300px;
-    height: 480px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 5px;
-    margin: 10px 5px;
-    box-shadow: 0 0 20px -5px #91959f66;
-}
-
-.content-btn {
-    position: absolute;
-    bottom: 20px;
-    left: 105px;
-    padding: 5px 10px;
-    background: #299eff;
-    font-size: 14px;
-    border-radius: 5px;
-    border: none;
-    color: #fff;
-}
-
-.caption {
-    display: inline;
-    font-size: 20px;
-    font-weight: bold;
-    color: #3E3E3E;
-}
-
-.name-company {
-    font-size: 15px;
-    color: #a8acb7;
-}
-
-.manager {
-    font-size: 12px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
 .top-developer > ul {
     list-style: none;
     margin: 10px 0px;
@@ -56,10 +15,9 @@
     border-radius: 50%;
     width: 10px;
     height: 10px;
-    top: 5px; left: -20px;
+    top: 5px;
+    left: -20px;
 }
-
-
 
 .top-developer-title {
     color: #299EFF;
