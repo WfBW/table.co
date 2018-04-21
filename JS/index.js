@@ -8,8 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     //Блок загрузки
     var loadingBlock = document.querySelector(".loadingBlock");
 
-
-    //открытие боковых вкладок
+    /////////////////////////////
+    //ОТКРЫТИЕ БОКОВЫХ ВКЛАДОК//
+    ////////////////////////////
     var mainHtml = function () {
         var btnProject = document.querySelector(".project");
         var btnTask = document.querySelector(".task");
@@ -31,8 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     btnTask.classList.remove("active");
                     btnOrganization.classList.remove("active");
 
-                    // функция нажатия на кнопку подробнее в проекте
-                    var btnMore = document.querySelector(".content-btn");
+                    // функция нажатия на кнопку ПОДРОБНЕЕ в проект
+                    var btnMore = document.querySelector(".btn-content");
                     if (btnMore != undefined)
                         btnMore.onclick = function () {
                             var xhr = new XMLHttpRequest();
@@ -109,8 +110,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         if (xhr.status == 200 & xhr.readyState == 4) {
                             mainView.innerHTML = xhr.responseText;
 
-                            ///////////////////////////////////////
-                            //Регистрация
+                            ////////////////////////////////////////
+                            //Регистрация                        //
                             ///////////////////////////////////////
 
                             var btnSt1 = document.querySelector(".btn-st1");

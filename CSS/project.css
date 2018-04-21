@@ -5,11 +5,6 @@
     right: 22px;
 }
 
-.name-company {
-    font-size: 14px;
-    color: #a8acb7;
-}
-
 .deadline {
     margin: 20px 0px;
 }
@@ -17,24 +12,6 @@
 .dead-date {
     font-size: 14px;
     color: #3E3E3E;
-}
-
-.tz-text {
-    color: #a8acb7;
-    margin: 7px 0px 0px 0px;
-    word-wrap: break-word;
-    font-size: 12px;
-    line-height: 2;
-}
-
-.zadachi {
-    margin: 20px 0px 0px 0px;
-}
-
-.caption-task {
-    color: #299eff;
-    font-weight: bold;
-    font-size: 18px;
 }
 
 .ul-check {
@@ -45,5 +22,8 @@
 }
 
 .ul-check > li {
-    margin: 5px 2px;
+    margin: 5px 0px;
+}
+.zadachi {
+    margin: 20px 0px 0px 0px;
 }

@@ -33,7 +33,7 @@ input[type="checkbox"] + label {
     margin: 0 0 0 10px;
     position: relative;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     color: #3e3e3e;
 }
 
@@ -109,6 +109,20 @@ hr {
     width: 100%;
 }
 
+/* текст 14 bold black */
+.text14b {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3e3e3e;
+}
+
+/* текст 14 gray */
+.text14gray {
+    font-size: 14px;
+    color: #a8acb7;
+    font-weight: normal;
+}
+
 /* заголовок блок-контента */
 .mainTitle {
     font-size: 20px;
@@ -150,10 +164,16 @@ hr {
     color: #3e3e3e;
 }
 
+.caption-ul {
+    color: #299eff;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .manager {
     font-size: 12px;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin: 5px 0px;
     color: #3e3e3e;
 }
 
@@ -161,6 +181,15 @@ hr {
     color: #a8acb7;
     font-size: 12px;
     font-weight: normal;
+}
+
+/* Текст ТЗ */
+.tz-text {
+    color: #a8acb7;
+    margin: 7px 0px 0px 0px;
+    word-wrap: break-word;
+    font-size: 12px;
+    line-height: 2;
 }
 
 /* кнопка в блоке проекты, организации */
@@ -172,3 +201,27 @@ hr {
 .block-content > .btn-content:hover {
     background: #2994ef;
 }
+
+/* Карусель */
+.carusel {
+    width: 200%;
+    height: 80%;
+}
+/* кнопка (стрелка) назад */
+.back-btn {
+    background: url(../IMG/back-btn.svg) no-repeat center center;
+    background-size: cover;
+    width: 9px;
+    height: 16px;
+    margin: 0px -10px 0px 30px;
+    cursor: pointer;
+}
+
+/* позиционирование информации на странице */
+.block-positioner {
+    padding: 0px 5px 20px 30px;
+    width: 80%;
+    height: 90%;
+}
+
+

@@ -1,0 +1,67 @@
+* {
+    font-family: "Roboto";
+}
+
+::-webkit-calendar-picker-indicator {
+    color: transparent;
+    opacity: 1;
+    background: url(../IMG/calendar-for-date.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+::-webkit-clear-button { display: none;}
+::-webkit-inner-spin-button { display: none; }
+
+input,
+textarea,
+select {
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 15px 0px;
+    border: 1px solid #b7b7bf;
+    border-radius: 5px;
+    font-size: 12px;
+    outline: none;
+    transition-duration: 0.3s;
+    transition-property: all;
+    color: #3e3e3e;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border: 1px solid #299eff;
+}
+
+input[type="date"] {
+    margin-top: 7px;
+    width: 45%;
+    cursor: text;
+}
+
+select {
+    width: 45%;
+}
+
+/* цвет подписи дла менеджера проекта */
+
+select:invalid {
+    color: gray;
+}
+
+.new-project .create-project {
+    margin: 40px 30px 0px 0px;
+    width: 152px;
+    height: 39px;
+    border: 2px solid #299eff;
+}
+
+.new-project .cancel-project {
+    width: 152px;
+    height: 39px;
+    background-color: #F7F8FA;
+    color: #3e3e3e;
+    border: 2px solid #C4CAD8;
+}
