@@ -1,0 +1,88 @@
+button {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* модальная форма */
+.modal-form {
+    position: relative;
+    min-width: 480px;
+    width: 50%;
+    height: auto;
+    border-radius: 15px;
+    background: #fff;
+    padding: 33px 30px;
+    margin: 45px auto 0px auto;
+    
+    border: 1px solid #C4CAD8;
+    font-family: Roboto;
+}
+
+/* форма модального окна */
+.modal-title-block {
+    margin: 0px auto 33px auto;
+}
+
+/* заголовок модального окна */
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3e3e3e;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* подзаголовок модального окна */
+.modal-sub-title {
+    font-size: 14px;
+    color: #A8ACB7;
+    text-align: center;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    background: url(../../IMG/close-menu.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* Выравнивание */
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+/* устранение выпадения float из потока */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* label и input глобальные стили */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3E3E3E;
+    display: inline-block;
+}
+
+input, textarea {
+    font-size: 15px;
+    padding: 10px;
+    width: 250px;
+    border: 1px solid #C4CAD8;
+    border-radius: 6px;
+    display: inline-block;
+    margin-left: 20px;
+    outline: none;
+    resize: none;
+}

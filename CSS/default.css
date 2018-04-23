@@ -224,4 +224,12 @@ hr {
     height: 90%;
 }
 
-
+/* Затемнение заднего фона при открытии окон */
+.bgBlur {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background: #000;
+    opacity: 0.2;
+}

@@ -1,0 +1,88 @@
+.intoteam-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 29px;
+    height: 34px;
+    background: url(../../IMG/avatar.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.member-list {
+    margin: 0px auto;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.member-list-item {
+    margin-bottom: 20px;
+}
+
+.member-list-item:last-child {
+    margin-bottom: 0px;
+}
+
+.member-list-item::after {
+    clear: both;
+}
+
+.member-avatar-img {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    background-color: #A8ACB7;
+}
+
+.member-avatar-block {
+    position: relative;
+    display: inline-block;
+}
+
+.member-status {
+    position: absolute;
+    top: 0px;
+    left: -2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #8EE052;
+}
+
+.member-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3e3e3e;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.member-sub-name {
+    font-size: 10px;
+    font-weight: bold;
+    color: #91959F;
+}
+
+.send-mess-btn {
+    width: 21px;
+    height: 22px;
+    background: url(../../IMG/member_mail_send.svg) no-repeat center;
+    background-size: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.member-more-btn {
+    background-color: #299eff;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 9px 20px;
+    border-radius: 5px;
+}
+
+.member-name-block {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+}

@@ -27,6 +27,7 @@ select {
     transition-duration: 0.3s;
     transition-property: all;
     color: #3e3e3e;
+    resize: none;
 }
 
 input:focus,
