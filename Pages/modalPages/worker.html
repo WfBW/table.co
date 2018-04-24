@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/CSS/modalCSS/default_modal.css">
+<link rel="stylesheet" href="/CSS/modalCSS/worker.css">
+
+
+<!-- jосновная форма -->
+<div class="modal-form">
+
+    <div class="modal-close-btn"></div>
+
+    <!-- заголовок окна -->
+    <div class="worker-title-block modal-title-block">
+        <div class="worker-modal-title modal-title">Гусаревич Илья</div>
+        <div class="worker-modal-subtitle modal-sub-title">Александрович</div>
+    </div>
+
+    <img src="../../IMG/avatar.svg" alt="" class="worker-avatar-img avatar-img">
+
+    <div class="worker-info-block info-block">
+        <ul>
+            <li>
+                <label for="worker-profesion">Профессия</label>
+                <input type="text" id="worker-profesion">
+            </li>
+            <li>
+                <label for="worker-phone">Номер телефона</label>
+                <input type="text" id="worker-phone">
+            </li>
+            <li>
+                <label for="worker-email">E-mail</label>
+                <input type="text" id="worker-email">
+            </li>
+            <li>
+                <label for="worker-aboutUs">О себе</label>
+                <textarea type="text" id="worker-aboutUs" rows="6"></textarea>
+            </li>
+        </ul>
+    </div>
+
+    <div class="worker-company-title">Компании:</div>
+
+    <ul class="worker-company-list">
+        <li class="worker-company-item">
+            <span class="company-name company-active">Nameless team</span>
+            <div class="company-sub-menu">
+                <div class="sub-menu-item clearfix">
+                    <div class="company-task-name left">Landing page</div>
+
+                    <div class="task-progress-block">
+                        <progress id="progressbar" class="right" value="64" max="100"></progress>
+                        <span class="company-task-procent right">64%</span>
+                    </div>
+                </div>
+
+                <div class="sub-menu-item clearfix">
+                    <div class="company-task-name left">Серия банеров для концерта</div>
+
+                    <div class="task-progress-block">
+                        <progress id="progressbar" class="right" value="35" max="100"></progress>
+                        <span class="company-task-procent right">35%</span>
+                    </div>
+                </div>
+
+                <div class="sub-menu-item clearfix">
+                    <div class="company-task-name left">Макет приложения</div>
+
+                    <div class="task-progress-block">
+                        <progress id="progressbar" class="right" value="4" max="100"></progress>
+                        <span class="company-task-procent right">4%</span>
+                    </div>
+                </div>
+            </div>
+        </li>
+        
+        <li class="worker-company-item">
+            <span class="company-name">Rock team</span>
+        </li>
+        
+        <li class="worker-company-item">
+            <span class="company-name">Prosto team</span>
+        </li>
+    </ul>
+
+</div>
