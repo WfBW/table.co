@@ -171,6 +171,6 @@ body {
     background: #f7f8fa;
     position: absolute;
     top: 60px;
-    left: 220px;
-    width: calc(100% - 220px);
+    left: 225px;
+    width: calc(100% - 225px);
 }

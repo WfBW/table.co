@@ -24,6 +24,7 @@
 }
 
 /* Checkbox */
+
 input[type="checkbox"] {
     opacity: 0;
     float: left;
@@ -80,9 +81,11 @@ input[type="checkbox"]:checked + label::after {
 input[type="checkbox"]:checked + label {
     color: #c4cad8;
 }
+
 /* end-Checkbox */
 
 /* Button */
+
 button {
     border-radius: 5px;
     font-weight: bold;
@@ -103,6 +106,7 @@ hr {
 }
 
 /* центральный блок-контент */
+
 .mainView {
     padding: 0px;
     height: 100%;
@@ -110,6 +114,7 @@ hr {
 }
 
 /* текст 14 bold black */
+
 .text14b {
     font-size: 14px;
     font-weight: bold;
@@ -117,6 +122,7 @@ hr {
 }
 
 /* текст 14 gray */
+
 .text14gray {
     font-size: 14px;
     color: #a8acb7;
@@ -124,6 +130,7 @@ hr {
 }
 
 /* заголовок блок-контента */
+
 .mainTitle {
     font-size: 20px;
     margin: 15px 0px 12px 30px;
@@ -132,6 +139,7 @@ hr {
 }
 
 /* Кнопка контекстного меню ... */
+
 .context-btn {
     display: inline-block;
     background: url(../IMG/Context.svg) no-repeat center;
@@ -143,6 +151,7 @@ hr {
 }
 
 /* блок проекты, организации */
+
 .block-content {
     position: relative;
     display: inline-block;
@@ -157,6 +166,7 @@ hr {
 }
 
 /* Заголовки в блоках название проекта и тп. */
+
 .caption {
     display: inline;
     font-size: 22px;
@@ -184,6 +194,7 @@ hr {
 }
 
 /* Текст ТЗ */
+
 .tz-text {
     color: #a8acb7;
     margin: 7px 0px 0px 0px;
@@ -193,21 +204,34 @@ hr {
 }
 
 /* кнопка в блоке проекты, организации */
+
 .block-content > .btn-content {
     position: absolute;
     bottom: 20px;
     left: 110px;
 }
+
 .block-content > .btn-content:hover {
     background: #2994ef;
 }
 
-/* Карусель */
+/* КАРУСЕЛЬ */
+
 .carusel {
-    width: 200%;
-    height: 80%;
+    width: 100%;
+    position: absolute;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    /*-webkit-mask: -webkit-linear-gradient(0deg, #000 0%, #fff 5%, #000 95%);
+    box-shadow: 0px 0 30px 0px #000;*/
 }
+
+.carusel-huakin {
+    width: 1200px;
+}
+
 /* кнопка (стрелка) назад */
+
 .back-btn {
     background: url(../IMG/back-btn.svg) no-repeat center center;
     background-size: cover;
@@ -218,6 +242,7 @@ hr {
 }
 
 /* позиционирование информации на странице */
+
 .block-positioner {
     padding: 0px 5px 20px 30px;
     width: 80%;
@@ -225,6 +250,7 @@ hr {
 }
 
 /* Затемнение заднего фона при открытии окон */
+
 .bgBlur {
     width: 100%;
     height: 100%;
