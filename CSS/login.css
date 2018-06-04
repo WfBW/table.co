@@ -1,0 +1,176 @@
+.form {
+    font-family: Roboto, sans-serif;
+    width: 400px;
+    height: 550px;
+    background-color: #f7f8fa;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0 auto;
+    padding: 20px 0px;
+    position: relative;
+}
+
+.logo {
+    width: 300px;
+    height: 64px;
+    background: url(../IMG/logo.svg) no-repeat center;
+    background-size: contain;
+    margin: 30px auto;
+    margin-bottom: 50px;
+}
+
+.short_logo {
+    margin: 20px auto;
+    width: 105px;
+    height: 15px;
+    background: url(../IMG/Short_logo.svg) no-repeat center;
+    background-size: cover;
+}
+
+input:not(.checkbox-remember), textarea, select {
+    display: block;
+    width: 250px;
+    padding: 10px;
+    margin: 15px auto;
+    border: 1px solid #b7b7bf;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    color: #79797b;
+    background: #fff;
+}
+
+input:focus {
+    box-shadow: 0 0 20px #299efe66;
+}
+
+input:not(.checkbox-remember) + label {
+    position: relative;
+    display: block;
+}
+
+input:not(.checkbox-remember) + label::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-color: #fff;
+    position: absolute;
+    top: -44px;
+    right: 85px;
+    background-color: #fff;
+}
+
+input[id="login"] + label::after {
+    background-image: url(../IMG/avatar.svg);
+}
+
+input[id="password"] + label::after {
+    background-image: url(../IMG/key.svg);
+}
+
+label[for="bday"] {
+    display: block;
+    text-align: left;
+    padding-left: 0px;
+    color: #91959F;
+}
+
+input[id="bday"] {
+    margin-top: 4px;
+    padding: 8px 10px;
+}
+
+.btn-autorization {
+    opacity: 0.9;
+    width: 250px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    margin-left: 75px;
+}
+
+.btn-autorization:hover {
+    opacity: 1;
+}
+
+.link {
+    display: block;
+    margin: 5px auto;
+    text-align: center;
+    text-decoration: none;
+    color: #b7b7bf;
+    opacity: 0.9;
+}
+
+.registration {
+    margin-top: 20px;
+    font-size: 16px; 
+    color: #2fadff;
+}
+
+.greeting {
+    margin: 35px;
+    text-align: center;
+}
+
+.gr-title {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.gr-description {
+    font-size: 12px;
+    color: #91959F;
+}
+
+.stage-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #C4CAD8;
+    text-align: left;
+    padding-left: 0px;
+}
+
+.stages {
+    position: relative;
+    height: 280px;
+}
+
+.stage {
+    position: absolute;
+    left: 75px;
+}
+
+.cbx-rmb-block {
+    position: absolute;
+    top: 220px;
+    left: 75px;
+    width: 230px;
+}
+
+.content-login {
+    position: relative;
+}
+
+.reg-back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: url(../IMG/back-btn.svg) no-repeat center center;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+    margin: 0px 0px 0px 0px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.login-registration-block input[type="button"]{
+    background-color: #299EFF;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.login-registration-block input[type="button"]:hover {
+    opacity: 1;
+}

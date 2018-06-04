@@ -1,38 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>main</title>
-    <link rel="stylesheet" type="text/css" href="../CSS/index.css"> 
+
     <link rel="stylesheet" type="text/css" href="../CSS/main.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/project.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/organization.css">
+    <link rel="stylesheet" type="text/css" href="../CSS/task.css">
+    
 </head>
+
 <body>
+    <!--  Левый блок с навигацией  -->
     <div class="left-bar">
         <ul class="lmenu">
-            <li class="lmenu-item project">Проекты</li>
+            <li class="lmenu-item project active">Проекты</li>
             <li class="lmenu-item task">Задачи</li>
             <li class="lmenu-item organization">Организации</li>
             <!--<li class="lmenu-item cloud">Облако</li>-->
         </ul>
     </div>
-    
+
+    <!--  Верхний блок-шапка  -->
     <div class="top-bar">
         <button class="btn btn-menu"></button>
-        <button class="btn btn-mail"></button>
+
+        <!--<button class="btn btn-mail"></button>-->
         <button class="btn avatar"><img src="../IMG/20101125_cyber.jpg"></button>
         <button class="btn btn-notification"></button>
         <button class="btn btn-settings"></button>
-        
+
         <div class="project-logo"></div>
-    </div>    
-    
-    <div class="mainPageView">
-    
     </div>
+
+    <!--  Центральный блок отображения  -->
+    <div class="mainPageView">
+        <!--Проекты-->
+        <div class="main-project-block" style="display: block">
+            <div class="mainTitle">Проекты</div>
+            <div class="carusel">
+                <div class="carusel-huakin">
+
+                    <div class="block-content">
+                        <div class="title-block">
+                            <img class="proj-mark" src="../IMG/mark.svg">
+                            <span class="caption">Azazel is Coming</span>
+                            <hr>
+                            <span class="name-company text14gray">Namles Team</span>
+                        </div>
+
+                        <div class="deadline">
+                            <span class="caption">Дедлайн:</span>
+                            <span class="dead-date">2 дня (14.04.2016)</span>
+                        </div>
+
+                        <div class="manager">
+                            Менеджер проекта: <span class="manager-name">Ефимов Пётр</span>
+                        </div>
+
+                        <div class="tz">
+                            <span class="caption">Техническое задание:</span>
+                            <p class="tz-text">документ, содержащий требования заказчика к объекту закупки, определяющие условия и порядок ее проведения...</p>
+                        </div>
+                        <div class="zadachi">
+                            <span class="caption-ul">Мои задачи:</span>
+                            <ul class="ul-check">
+                                <li>
+                                    <input type="checkbox" id="check1"><label for="check1">Нарисовать</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="check2"><label for="check2">Сверстать</label>
+                                </li>
+                                <li>
+                                    <input type="checkbox" id="check3"><label for="check3">Запрограммировать</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <button class="btn-content">Подробнее...</button>
+                    </div>
+                    <!--/.block-content-->
+
+                </div>
+                <!-- /.huakin -->
+            </div>
+        </div>
+
+        <!--Задачи-->
+        <div class="main-task-block" style="display: none">
+            <div class="content">
+                <div class="mainTitle">
+                    Мои задачи
+                </div>
+                <ul>
+                    <li class="item-task">
+                        <div class="task-block">
+                            <div class="status"></div>
+                            <input type="checkbox" class="check-task" id="checkbox1">
+                            <label for="checkbox1"><span class="task-text">Нарисовать спрайт персонажа ГГ</span></label>
+
+                            <div class="tasks-right-block">
+                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
+                                <span class="task-date">20.20.2020</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-task">
+                        <div class="task-block">
+                            <div class="status"></div>
+                            <input type="checkbox" class="check-task" id="checkbox2">
+                            <label for="checkbox2"><span class="task-text">Нарисовать еще один спрайт</span></label>
+
+                            <div class="tasks-right-block">
+                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
+                                <span class="task-date">20.20.2020</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+
+                <div class="mainTitle">
+                    Задачи работников
+                </div>
+                <ul>
+                    <li class="item-task">
+                        <div class="task-block">
+                            <div class="status"></div>
+                            <input type="checkbox" class="check-task" id="checkbox4">
+                            <label for="checkbox4"><span class="task-text">Пожалуй еще один сппрайт нам не помешает</span></label>
+
+                            <div class="tasks-right-block">
+                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
+                                <span class="task-date">20.20.2020</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-task">
+                        <div class="task-block">
+                            <div class="status"></div>
+                            <input type="checkbox" class="check-task" id="checkbox5">
+                            <label for="checkbox5"><span class="task-text">Нарисовать спрайт персонажа ГГГГГГГГГГ ГГГГГГ</span></label>
+
+                            <div class="tasks-right-block">
+                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
+                                <span class="task-date">20.20.2020</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-task">
+                        <div class="task-block">
+                            <div class="status"></div>
+                            <input type="checkbox" class="check-task" id="checkbox6">
+                            <label for="checkbox6"><span class="task-text">Нарисовать спрайт персонажа ГГ -> спрайтспрайтспрайтспрайт спрайтспрайт спрайтспрайт</span></label>
+
+                            <div class="tasks-right-block">
+                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
+                                <span class="task-date">20.20.2020</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!--Организации-->
+        <div class="main-organization-block" style="display: none">
+            <div class="mainTitle">
+                Организации
+                <div class="context-btn"></div>
+            </div>
+
+            <div class="carusel">
+                <div class="block-content">
+                    <div class="title-block">
+                        <span class="caption">Nameless Team</span><br>
+                        <img class="groupOut-btn" src="../IMG/GroupOut.svg">
+                    </div>
+                    <hr>
+                    <div class="manager">
+                        Менеджер проекта: <span class="manager-name">Ефимов Пётр</span>
+                    </div>
+                    <div class="myProject">
+                        <div class="caption">Мои проекты:</div>
+                        <ul>
+                            <li>Azazel is coming</li>
+                            <li>Paper pleat</li>
+                            <li>tablet.CO</li>
+                        </ul>
+                    </div>
+                    <div class="top-developer">
+                        <span class="caption-ul">Топ разработчиков:</span>
+                        <ul>
+                            <li>Гусаревичь Илья</li>
+                            <li>Ефимов Петр</li>
+                            <li>Горбачев Максим</li>
+                        </ul>
+                    </div>
+
+                    <button class="btn-content">Список работников</button>
+                </div>
+            </div>
+        </div>
+
+    </div> <!--  Конец Центральный блок отображения  -->
     
-    <div class="right-bar"></div>
-    
+    <!--<div class="right-bar"></div>-->
+
+    <!--  Модальные окна  -->
     <div class="modal"></div>
+
+    <!--  Блок загрузки  -->
     <div class="loadingPageBlock"><span>Загрузка...</span></div>
 </body>
+
 </html>
