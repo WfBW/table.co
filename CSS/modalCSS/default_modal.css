@@ -1,4 +1,4 @@
-button {
+.modal-context-form button, .modal-form botton {
     border: none;
     cursor: pointer;
     outline: none;
@@ -8,12 +8,12 @@ button {
 .modal-form {
     position: relative;
     min-width: 520px;
-    width: 50%;
+    width: 40%;
     height: auto;
     border-radius: 15px;
     background: #fff;
     padding: 33px 30px;
-    margin: 45px auto 0px auto;
+    margin: 45px auto 45px auto;
     
     border: 1px solid #C4CAD8;
     font-family: Roboto;
@@ -78,14 +78,15 @@ button {
 }
 
 /* label и input глобальные стили */
-label {
+.modal-context-form label, .modal-form label {
     font-size: 16px;
     font-weight: bold;
     color: #3E3E3E;
     display: inline-block;
 }
 
-input, textarea, select {
+.modal-context-form input, .modal-context-form textarea, .modal-context-form select,
+.modal-form input, .modal-form textarea, .modal-form select {
     font-size: 15px;
     padding: 8px 10px;
     width: 250px;
@@ -120,21 +121,7 @@ input, textarea, select {
     display: inline-flex;
 }
 
-/* Прогресс БАРЫ */
-progress {
-  border: 2px solid #299EFF;
-    padding: 3px;
-    height: 14px;
-    border-radius: 5px;
-    
-}
-progress::-webkit-progress-bar {
-    background: none;
-}
-progress::-webkit-progress-value {
-    background-color: #299EFF;
-    border-radius: 5px;
-}
+
 
 /* КОНТЕКСТНЫЕ ОКНА (invite_team, invite_project) */
 .modal-context-form {

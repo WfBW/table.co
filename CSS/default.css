@@ -105,6 +105,22 @@ hr {
     margin: 2px 0px;
 }
 
+/* Прогресс БАРЫ */
+progress {
+  border: 2px solid #299EFF;
+    padding: 3px;
+    height: 14px;
+    border-radius: 5px;
+    
+}
+progress::-webkit-progress-bar {
+    background: none;
+}
+progress::-webkit-progress-value {
+    background-color: #299EFF;
+    border-radius: 5px;
+}
+
 /* центральный блок-контент */
 
 .mainView {
@@ -226,9 +242,7 @@ hr {
     box-shadow: 0px 0 30px 0px #000;*/
 }
 
-.carusel-huakin {
-    width: 1200px;
-}
+
 
 /* кнопка (стрелка) назад */
 
@@ -254,8 +268,7 @@ hr {
     height: 100%;
     margin: 0px;
     padding: 0px;
-    background: #000;
-    opacity: 0.2;
+    background: rgba(0, 0, 0, 0.6);
 }
 
 .index-alert-block {
@@ -270,4 +283,15 @@ hr {
     color: #fff;
     text-align: center;
     vertical-align: middle;
+}
+
+.modal {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }

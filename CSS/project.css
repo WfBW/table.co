@@ -27,3 +27,7 @@
 .zadachi {
     margin: 20px 0px 0px 0px;
 }
+
+.main-project-block {
+    display: inline-block !important;
+}

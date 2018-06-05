@@ -9,7 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../CSS/project.css">
     <link rel="stylesheet" type="text/css" href="../CSS/organization.css">
     <link rel="stylesheet" type="text/css" href="../CSS/task.css">
-    
+    <link rel="stylesheet" type="text/css" href="../CSS/default.css">
+    <link rel="stylesheet" href="../CSS/project_more.css">
+
 </head>
 
 <body>
@@ -37,54 +39,66 @@
 
     <!--  Центральный блок отображения  -->
     <div class="mainPageView">
-        <!--Проекты-->
-        <div class="main-project-block" style="display: block">
-            <div class="mainTitle">Проекты</div>
-            <div class="carusel">
-                <div class="carusel-huakin">
-
-                    <div class="block-content">
-                        <div class="title-block">
-                            <img class="proj-mark" src="../IMG/mark.svg">
-                            <span class="caption">Azazel is Coming</span>
-                            <hr>
-                            <span class="name-company text14gray">Namles Team</span>
-                        </div>
-
-                        <div class="deadline">
-                            <span class="caption">Дедлайн:</span>
-                            <span class="dead-date">2 дня (14.04.2016)</span>
-                        </div>
-
-                        <div class="manager">
-                            Менеджер проекта: <span class="manager-name">Ефимов Пётр</span>
-                        </div>
-
-                        <div class="tz">
-                            <span class="caption">Техническое задание:</span>
-                            <p class="tz-text">документ, содержащий требования заказчика к объекту закупки, определяющие условия и порядок ее проведения...</p>
-                        </div>
-                        <div class="zadachi">
-                            <span class="caption-ul">Мои задачи:</span>
-                            <ul class="ul-check">
-                                <li>
-                                    <input type="checkbox" id="check1"><label for="check1">Нарисовать</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="check2"><label for="check2">Сверстать</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="check3"><label for="check3">Запрограммировать</label>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <button class="btn-content">Подробнее...</button>
-                    </div>
-                    <!--/.block-content-->
-
+        <!--   Блок список проектов     -->
+        <div class="carusel projectList">
+            <div class="carusel-huakin" style="width: 361px;">
+                <!--Проекты-->
+                <div class="main-project-block myProj" style="display: block">
+                    <div class="mainTitle">Проекты</div>
                 </div>
-                <!-- /.huakin -->
+                <!--Управление-->
+                <div class="main-project-block myProjControl" style="display: block">
+                    <div class="mainTitle">Управление</div>
+                </div>
+            </div>
+            <!-- /.huakin -->
+        </div>
+
+        <!--    Подробнее о проекте    -->
+        <div class="main-project-more" style="display: none">
+            <header class="headerTitle">
+                <div class="back-btn"></div>
+                <div class="mainTitle" id="mainProjMoreTitle"></div>
+            </header>
+
+            <img class="proj-mark" src="../IMG/mark.svg">
+
+            <div class="block-positioner">
+                <div class="pj-organization text14b">Организация: <span class="name-company text14gray" id="mainNameCompany"></span></div>
+
+                <div class="deadline">
+                    <div class="caption">Дедлайн: </div>
+                    <span class="dead-date" id="mainProjMoreDead">2 дня (14.04.2016)</span>
+                </div>
+
+                <!--
+                <div class="manager">
+                    Менеджер проекта: <span class="manager-name">Ефимов Пётр</span>
+                </div>
+                -->
+
+                <div class="tz">
+                    <span class="caption">Техническое задание:</span>
+                    <p class="tz-text" id="mainProjMoreTZ"></p>
+                </div>
+
+                <div class="zadachi">
+                    <span class="caption-ul">Мои задачи:</span>
+                    <div class="readyTask-text">Готово
+                        <span id="mainTaskComplit"></span> из <span id="mainTaskCount"></span>
+                    </div>
+                    <ul class="ul-check" id="mainProjMoreList">
+                        <li>
+                            <input type="checkbox" id="check1"><label for="check1">Нарисовать</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="check2"><label for="check2">Сверстать</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="check3"><label for="check3">Запрограммировать</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -165,7 +179,7 @@
                 </ul>
             </div>
         </div>
-        
+
         <!--Организации-->
         <div class="main-organization-block" style="display: none">
             <div class="mainTitle">
@@ -205,12 +219,10 @@
             </div>
         </div>
 
-    </div> <!--  Конец Центральный блок отображения  -->
-    
-    <!--<div class="right-bar"></div>-->
+    </div>
+    <!--  Конец Центральный блок отображения  -->
 
-    <!--  Модальные окна  -->
-    <div class="modal"></div>
+    <!--<div class="right-bar"></div>-->
 
     <!--  Блок загрузки  -->
     <div class="loadingPageBlock"><span>Загрузка...</span></div>
