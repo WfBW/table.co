@@ -71,6 +71,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 mainView.innerHTML = xhr.responseText;
                 
                 var mainProjectBlock = document.querySelector(".projectList");
+                var backProjMore = document.querySelector("#mainBackProjMore");
+                var mainProjMore = document.querySelector(".main-project-more");
                 
                 // создание элемекнта списка проектов
                 function projItem (container, projId) {
@@ -98,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     document.querySelector("#proj"+projId.id_proj).onclick = function(){
                         projMore(projId.id_proj, projId);  
                     };
-                    alert(document.querySelector("#proj"+projId.id_proj).onclick);
                 };
                 
                 //подробнее о проекте
@@ -118,8 +119,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     tzProj.innerHTML = proj.tz;
                     
                     mainProjectBlock.style.display = "none";
-                    document.querySelector(".main-project-more").style.display = "block";
+                    mainProjMore.style.display = "block";
                 }
+                
+                backProjMore.onclick = function() {
+                    mainProjMore.style.display = "none";
+                    mainProjectBlock.style.display = "block";
+                };
                 
                 //начало ajax получение проектов
                 ajax("POST", "http://tableco.ad-best.ru/php/proj/getProjData.php", false, 
@@ -148,6 +154,48 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 loadingBlock.style.display = "none";
 
+                /////////////////////////////
+                //ОТКРЫТИЕ БОКОВЫХ ВКЛАДОК//
+                var
+                    btnProject = document.querySelector(".project"),
+                    btnTask = document.querySelector(".task"),
+                    btnOrganization = document.querySelector(".organization"),
+                    mainTaskBlock = document.querySelector(".main-task-block"),
+                    mainOrganizationBlock = document.querySelector(".main-organization-block");
+
+                // вкладка задачи
+                btnTask.onclick = function () {
+                    mainOrganizationBlock.style.display = "none";
+                    mainProjectBlock.style.display = "none";
+                    mainTaskBlock.style.display = "block";
+                    btnProject.classList.remove("active");
+                    btnTask.classList.add("active");
+                    btnOrganization.classList.remove("active");
+                    mainProjMore.style.display = "none";
+                }
+                // вкладка организации
+                btnOrganization.onclick = function () {
+                    mainProjectBlock.style.display = "none";
+                    mainTaskBlock.style.display = "none";
+                    mainOrganizationBlock.style.display = "block";
+                    btnProject.classList.remove("active");
+                    btnTask.classList.remove("active");
+                    btnOrganization.classList.add("active");
+                    mainProjMore.style.display = "none";
+                }
+                // вкладка проекты
+                btnProject.onclick = function () {
+                    mainOrganizationBlock.style.display = "none";
+                    mainTaskBlock.style.display = "none";
+                    mainProjectBlock.style.display = "block";
+                    btnProject.classList.add("active");
+                    btnTask.classList.remove("active");
+                    btnOrganization.classList.remove("active");
+                    mainProjMore.style.display = "none";
+                }
+                //      КОНЕЦ ВКЛАДОК     //
+                ////////////////////////////
+
                 //Кнопка аватара
                 var btnProfile = document.querySelector(".avatar");
                 btnProfile.onclick = function openProfile() {
@@ -168,51 +216,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     xhr.send();
                 };
-
-                /////////////////////////////
-                //ОТКРЫТИЕ БОКОВЫХ ВКЛАДОК//
-                var
-                    btnProject = document.querySelector(".project"),
-                    btnTask = document.querySelector(".task"),
-                    btnOrganization = document.querySelector(".organization"),
-                    mainTaskBlock = document.querySelector(".main-task-block"),
-                    mainOrganizationBlock = document.querySelector(".main-organization-block");
-                    
-
-                // вкладка задачи
-                btnTask.onclick = function () {
-                    mainOrganizationBlock.style.display = "none";
-                    mainProjectBlock.style.display = "none";
-                    mainTaskBlock.style.display = "block";
-                    btnProject.classList.remove("active");
-                    btnTask.classList.add("active");
-                    btnOrganization.classList.remove("active");
-                }
-                // вкладка организации
-                btnOrganization.onclick = function () {
-                    mainProjectBlock.style.display = "none";
-                    mainTaskBlock.style.display = "none";
-                    mainOrganizationBlock.style.display = "block";
-                    btnProject.classList.remove("active");
-                    btnTask.classList.remove("active");
-                    btnOrganization.classList.add("active");
-                }
-                // вкладка проекты
-                btnProject.onclick = function () {
-                    mainOrganizationBlock.style.display = "none";
-                    mainTaskBlock.style.display = "none";
-                    mainProjectBlock.style.display = "block";
-                    btnProject.classList.add("active");
-                    btnTask.classList.remove("active");
-                    btnOrganization.classList.remove("active");
-                }
-                //      КОНЕЦ ВКЛАДОК     //
-                ////////////////////////////
-
             }
-        };
+        };//конец ajax main.html
         xhr.send();
-    };
+    }; //конец функции mainHtml
     
     function loginHtml() {
         var xhr = new XMLHttpRequest();
@@ -351,7 +358,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
         xhr.send();
-    };
+    };//конец функции loginHtml
 
     //     КОНЕЦ ФУНКЦИИ   //
     /////////////////////////

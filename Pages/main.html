@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>main</title>
-
-    <link rel="stylesheet" type="text/css" href="../CSS/main.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/project.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/organization.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/task.css">
+<!--
     <link rel="stylesheet" type="text/css" href="../CSS/default.css">
-    <link rel="stylesheet" href="../CSS/project_more.css">
-
-</head>
-
-<body>
+    <link rel="stylesheet" type="text/css" href="../CSS/main.css">
+-->
+<div class="main-block-container">
     <!--  Левый блок с навигацией  -->
     <div class="left-bar">
         <ul class="lmenu">
@@ -27,10 +15,10 @@
 
     <!--  Верхний блок-шапка  -->
     <div class="top-bar">
-        <button class="btn btn-menu"></button>
+        <!--        <button class="btn btn-menu"></button>-->
 
         <!--<button class="btn btn-mail"></button>-->
-        <button class="btn avatar"><img src="../IMG/20101125_cyber.jpg"></button>
+        <button class="btn avatar"></button>
         <button class="btn btn-notification"></button>
         <button class="btn btn-settings"></button>
 
@@ -41,7 +29,7 @@
     <div class="mainPageView">
         <!--   Блок список проектов     -->
         <div class="carusel projectList">
-            <div class="carusel-huakin" style="width: 361px;">
+            <div class="carusel-huakin">
                 <!--Проекты-->
                 <div class="main-project-block myProj" style="display: block">
                     <div class="mainTitle">Проекты</div>
@@ -57,18 +45,18 @@
         <!--    Подробнее о проекте    -->
         <div class="main-project-more" style="display: none">
             <header class="headerTitle">
-                <div class="back-btn"></div>
+                <div class="back-btn" id="mainBackProjMore"></div>
                 <div class="mainTitle" id="mainProjMoreTitle"></div>
             </header>
 
-            <img class="proj-mark" src="../IMG/mark.svg">
+            <img class="proj-mark-more" src="../IMG/mark.svg">
 
             <div class="block-positioner">
                 <div class="pj-organization text14b">Организация: <span class="name-company text14gray" id="mainNameCompany"></span></div>
 
                 <div class="deadline">
                     <div class="caption">Дедлайн: </div>
-                    <span class="dead-date" id="mainProjMoreDead">2 дня (14.04.2016)</span>
+                    <span class="dead-date-more" id="mainProjMoreDead">2 дня (14.04.2016)</span>
                 </div>
 
                 <!--
@@ -82,7 +70,7 @@
                     <p class="tz-text" id="mainProjMoreTZ"></p>
                 </div>
 
-                <div class="zadachi">
+                <div class="zadachi-more">
                     <span class="caption-ul">Мои задачи:</span>
                     <div class="readyTask-text">Готово
                         <span id="mainTaskComplit"></span> из <span id="mainTaskCount"></span>
@@ -221,11 +209,4 @@
 
     </div>
     <!--  Конец Центральный блок отображения  -->
-
-    <!--<div class="right-bar"></div>-->
-
-    <!--  Блок загрузки  -->
-    <div class="loadingPageBlock"><span>Загрузка...</span></div>
-</body>
-
-</html>
+</div>

@@ -1,4 +1,4 @@
-body {
+.main-block-container {
     font-family: 'Roboto', sans-serif;
     margin: 0px;
     background-color: #f7f8fa;
@@ -92,7 +92,6 @@ body {
     width: 100px;
     height: 30px;
     background: url(../IMG/Short_logo.svg) no-repeat center;
-    
 }
 
 .top-bar {
@@ -101,7 +100,7 @@ body {
     width: 100%;
     height: 50px;
     background: #fff;
-    padding: 10px;
+    padding: 10px 30px;
     z-index: 2;
 }
 
@@ -113,7 +112,8 @@ body {
     border: none;
     opacity: 0.8;
     outline: none;
-    padding: 0px 20px;
+    padding: 0px 0px;
+    margin: 0 10px;
 }
 
 .top-bar > .btn:hover {
@@ -145,17 +145,17 @@ body {
 
 .top-bar > .btn:not(.btn-menu) {
     float: right;
-    margin: 0px 5px;
 }
 
 .top-bar > .avatar {
     position: relative;
-    top: -2.5px;
+    top: -3px;
     width: 35px;
     height: 35px;
+    background: #C4CAD8;
     border-radius: 50%;
     padding: 0px;
-    opacity: 1;
+    opacity: 0.9;
 }
 
 .top-bar > .avatar > img {
@@ -173,4 +173,251 @@ body {
     top: 60px;
     left: 225px;
     width: calc(100% - 225px);
+    height: calc(100% - 5px);
 }
+
+/* проекты */
+.proj-mark {
+    width: 18px;
+    position: absolute;
+    top: 0px;
+    right: 22px;
+}
+
+.deadline {
+    margin: 20px 0px;
+}
+
+.dead-date {
+    font-size: 14px;
+    color: #3E3E3E;
+}
+
+.ul-check {
+    list-style: none;
+    display: grid;
+    padding: 0px;
+    margin: 0px;
+}
+
+.ul-check > li {
+    margin: 5px 0px;
+}
+.zadachi {
+    margin: 20px 0px 0px 0px;
+}
+
+.main-project-block {
+    display: inline-block !important;
+}
+/* конец проектов */
+
+/* организации */
+.top-developer > ul { /* .топ разработчиков */
+    list-style: none;
+    margin: 10px 0px;
+    padding-left: 25px;
+}
+
+.top-developer > ul > li {
+    margin: 10px 0px;
+    position: relative;
+    color: #3e3e3e;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.top-developer > ul > li::before {
+    position: absolute;
+    content: '';
+    background: #D4DEF5;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    top: 5px;
+    left: -20px;
+} /* ./топ разработчиков */
+
+.myProject {
+    margin: 22px 0px;
+}
+
+.myProject > ul {
+    margin: 5px 0px;
+    padding-left: 25px;
+}
+
+.myProject > ul > li {
+    list-style-type: none;
+    color: #A8ACB7;
+    font-weight: bold;
+    font-size: 14px;
+    position: relative;
+    margin-bottom: 7px;
+}
+
+.myProject > ul > li::before {
+    position: absolute;
+    content: '';
+    background: #299EFF;
+    border-radius: 50%;
+    width: 7px;
+    height: 7px;
+    top: 5px;
+    left: -20px;
+}
+.groupOut-btn {
+    width: 35px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+/* конец организаций */
+
+/* задачи */
+.content {
+    padding: 0px 35px 14px 30px;
+    height: 100%;
+}
+
+.content > ul {
+    list-style: none;
+}
+
+.status {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: -30px;
+    top: calc(50% - 7.5px);
+    margin: auto 0px;
+    background: #ff432f;
+    border-radius: 50%;
+}
+
+.item-task {
+    position: relative;
+    margin: 20px 0px;
+    background-color: #fff;
+    border-radius: 5px;
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+
+.item-task .task-block {
+    display: block;
+    background: #fff;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.task-block .task-text {
+    display: inline-block;
+    word-wrap: break-word;
+    width: calc(100% - 300px);
+    font-size: 14px;
+    height: 100%;
+    vertical-align: middle;
+    word-wrap: break-word;
+}
+
+.project-text {
+    color: darkgrey;
+    font-size: 12px;
+    word-wrap: break-word;
+}
+
+.task-date {
+    font-size: 12px;
+    word-wrap: break-word;
+}
+
+.check-task {
+    display: inline-block;
+    vertical-align: middle;
+}
+.tright {
+    float: right;
+}
+
+.tasks-right-block {
+    display: inline;
+    height: 50%;
+    border-left: 1px solid #E6E6E6;
+    padding-left: 10px;
+}
+.tasks-right-block > span{
+    vertical-align: middle;
+}
+.tasks-right-block > div {
+    display: inline;
+}
+
+.title-content:last-of-type{
+    margin: 40px 0px 0px 0px;
+}
+/* конец задач */
+
+/* профиль пользователя */
+.profile-set-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 25px;
+    height: 25px;
+    background: url(../../IMG/settings-work-tool.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.profile-avatar-block {
+    margin: 0px auto;
+    width: 200px;
+    text-align: center;
+}
+
+.profile-editava-btn {
+    padding: 8px 12px;
+    color: #299EFF;
+    font-weight: bold;
+    font-size: 14px;
+    background-color: #fff;
+    border: 4px solid #299EFF;
+    border-radius: 5px;
+}
+/* конц профиля пользователя */
+
+/* подробнее о проекте */
+.proj-mark-more {
+    width: 18px;
+    height: 38px;
+    position: absolute;
+    top: -14px;
+    left: 318px;
+}
+
+.headerTitle > div {
+    display: inline-block;
+}
+
+.pj-organization {
+    margin: 10px 0px 25px;
+}
+
+.dead-date-more {
+    font-weight: normal;
+    font-size: 18px;
+}
+
+.zadachi-more {
+    margin: 27px 0px;
+}
+
+.readyTask-text {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 8px 0px;
+    color: #A8ACB7;
+}
+/* конец подробнее о проекте */
