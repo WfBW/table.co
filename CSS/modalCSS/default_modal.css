@@ -7,8 +7,7 @@
 /* модальная форма */
 .modal-form {
     position: relative;
-    min-width: 520px;
-    width: 40%;
+    width: 540px;
     height: auto;
     border-radius: 15px;
     background: #fff;

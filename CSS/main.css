@@ -207,7 +207,7 @@
     margin: 20px 0px 0px 0px;
 }
 
-.main-project-block {
+.main-block-inline {
     display: inline-block !important;
 }
 /* конец проектов */
@@ -421,3 +421,248 @@
     color: #A8ACB7;
 }
 /* конец подробнее о проекте */
+
+/* создание нового проекта */
+.main-project-new input,
+.main-project-new textarea,
+.main-project-new select {
+    margin: 0 auto;
+    display: block;
+    width: 100%;
+    padding: 8px;
+    margin: 15px 0px;
+    border: 1px solid #b7b7bf;
+    border-radius: 5px;
+    font-size: 12px;
+    outline: none;
+    transition-duration: 0.3s;
+    transition-property: all;
+    color: #3e3e3e;
+    resize: none;
+}
+
+.main-project-new input:focus,
+.main-project-new textarea:focus,
+.main-project-new select:focus {
+    border: 1px solid #299eff;
+}
+
+.main-project-new input[type="date"] {
+    margin-top: 7px;
+    width: 45%;
+    cursor: text;
+}
+
+.main-project-new select {
+    width: 45%;
+}
+
+.main-project-new select:invalid {
+    color: gray;
+}
+
+.new-project .create-project {
+    margin: 40px 30px 0px 0px;
+    width: 152px;
+    height: 39px;
+    border: 2px solid #299eff;
+}
+
+.new-project .cancel-project {
+    width: 152px;
+    height: 39px;
+    background-color: #F7F8FA;
+    color: #3e3e3e;
+    border: 2px solid #C4CAD8;
+}
+/* конец создания нового проекта */
+
+/* подробнее о работнике */
+.worker-avatar-img {
+    position: absolute;
+    top: 36px;
+    left: 60px;
+}
+
+.worker-info-block {
+    margin-top: 100px;
+}
+
+.worker-title-block {
+    margin-left: 150px;
+}
+
+.worker-company-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 25px 0px 0px;
+    color: #3e3e3e;
+}
+
+.worker-company-list {
+    list-style-type: none;
+    padding: 0px 45px 0px 15px;
+    margin: 6px 0px 0px;
+}
+
+.worker-company-item {
+    padding: 10px 0px;
+    border-bottom: 1.5px solid #C4CAD8;
+}
+
+.company-name {
+    color: #C4CAD8;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    transition-property: color;
+}
+
+.company-sub-menu {
+    border: 1px solid #C4CAD8;
+    padding: 18px;
+    border-radius: 5px;
+    display: none;
+}
+
+.company-task-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3e3e3e;
+    width: calc(100% - 195px);
+}
+
+.company-task-procent {
+    font-size: 12px;
+    font-weight: bold;
+    color: #299EFF;
+    margin-right: 5px;
+}
+
+.sub-menu-item {
+    margin-bottom: 16px;
+}
+
+/* Наведение на компанию */
+.company-name:hover {
+    color: #3e3e3e;
+}
+
+/* Активная компания */
+.company-active {
+    color: #3e3e3e;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.company-active ~ .company-sub-menu {
+    display: block;
+}
+/* конец подробнее о работнике */
+
+/* список работников организации */
+.intoteam-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 29px;
+    height: 34px;
+    background: url(../../IMG/avatar.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.member-list {
+    margin: 0px auto;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.member-list-item {
+    margin-bottom: 20px;
+}
+
+.member-list-item:last-child {
+    margin-bottom: 0px;
+}
+
+.member-list-item::after {
+    clear: both;
+}
+
+.member-avatar-img {
+    width: 39px;
+    height: 39px;
+    border-radius: 50%;
+    background-color: #A8ACB7;
+}
+
+.member-avatar-block {
+    position: relative;
+    display: inline-block;
+}
+
+.member-status {
+    position: absolute;
+    top: 0px;
+    left: -2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #8EE052;
+}
+
+.member-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3e3e3e;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+.member-sub-name {
+    font-size: 10px;
+    font-weight: bold;
+    color: #91959F;
+}
+
+.send-mess-btn {
+    width: 21px;
+    height: 22px;
+    background: url(../../IMG/member_mail_send.svg) no-repeat center;
+    background-size: contain;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.member-more-btn {
+    background-color: #299eff;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 9px 20px;
+    border-radius: 5px;
+}
+
+.member-name-block {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+}
+
+.project-sub-title {
+    font-size: 14px;
+}
+/* конец списка работников организации */
+.modal-worker-list {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: -10px;
+    bottom: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}

@@ -23,6 +23,17 @@
     border: 4px solid #EBEBEB;
 }
 
+::-webkit-calendar-picker-indicator {
+    color: transparent;
+    opacity: 1;
+    background: url(../IMG/calendar-for-date.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+::-webkit-clear-button { display: none;}
+::-webkit-inner-spin-button { display: none; }
+
+
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0px;
@@ -155,6 +166,8 @@ progress::-webkit-progress-value {
 /* заголовок блок-контента */
 
 .mainTitle {
+    position: relative;
+    width: 145px;
     font-size: 20px;
     margin: 15px 0px 12px 30px;
     font-weight: bold;
@@ -164,13 +177,35 @@ progress::-webkit-progress-value {
 /* Кнопка контекстного меню ... */
 
 .context-btn {
-    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 8px;
     background: url(../IMG/Context.svg) no-repeat center;
     background-size: contain;
     width: 20px;
     height: 10px;
-    margin-left: 10px;
     cursor: pointer;
+}
+.context-btn:hover .context-content {
+	opacity: 1;
+}
+
+.context-content {
+    opacity: 0;
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    padding: 10px 15px;
+    white-space: nowrap;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 30px rgba(64, 64, 64, 0.2);
+    color: #3E3E3E;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.4s ease-out;
 }
 
 /* блок проекты, организации */

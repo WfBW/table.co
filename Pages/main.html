@@ -27,22 +27,25 @@
 
     <!--  Центральный блок отображения  -->
     <div class="mainPageView">
-        <!--   Блок список проектов     -->
+        <!--   ПРОЕКТЫ     -->
         <div class="carusel projectList">
-            <div class="carusel-huakin">
-                <!--Проекты-->
-                <div class="main-project-block myProj" style="display: block">
+            <div class="carusel-huakin-proj">
+                <!--мои Проекты-->
+                <div class="main-block-inline myProj" style="display: block">
                     <div class="mainTitle">Проекты</div>
                 </div>
                 <!--Управление-->
-                <div class="main-project-block myProjControl" style="display: block">
-                    <div class="mainTitle">Управление</div>
+                <div class="main-block-inline myProjControl" style="display: block">
+                    <div class="mainTitle">
+                        Управление
+                        <div class="context-btn"><div class="context-content proj-context-btn">Создать проект...</div></div>
+                    </div>
                 </div>
             </div>
             <!-- /.huakin -->
         </div>
 
-        <!--    Подробнее о проекте    -->
+        <!-- Подробнее о проекте -->
         <div class="main-project-more" style="display: none">
             <header class="headerTitle">
                 <div class="back-btn" id="mainBackProjMore"></div>
@@ -90,7 +93,23 @@
             </div>
         </div>
 
-        <!--Задачи-->
+        <!-- Создание нового проекта -->
+        <div class="main-project-new" style="display: none">
+            <div class="mainTitle">Новый проект</div>
+            <div class="block-positioner new-project">
+                <input type="text" name="name_project" id="nameProjectNew" placeholder="Название проекта...">
+                <textarea name="text_tz" id="textTzNew" rows="10" placeholder="Техническое задание к проекту..."></textarea>
+                <label for="date_deadline" class="text14gray">Дата дедлайна</label>
+                <input type="date" id="dateDeadlineNew">
+                <select id="orgProjNew" required>
+                    <option value="" disabled selected hidden>Выберите организацию...</option>
+                </select>
+                <button class="create-project">Создать</button>
+                <button class="cancel-project">Отмена</button>
+            </div>
+        </div>
+       
+        <!--   ЗАДАЧИ   -->
         <div class="main-task-block" style="display: none">
             <div class="content">
                 <div class="mainTitle">
@@ -168,44 +187,86 @@
             </div>
         </div>
 
-        <!--Организации-->
-        <div class="main-organization-block" style="display: none">
-            <div class="mainTitle">
-                Организации
-                <div class="context-btn"></div>
-            </div>
-
-            <div class="carusel">
-                <div class="block-content">
-                    <div class="title-block">
-                        <span class="caption">Nameless Team</span><br>
-                        <img class="groupOut-btn" src="../IMG/GroupOut.svg">
-                    </div>
-                    <hr>
-                    <div class="manager">
-                        Менеджер проекта: <span class="manager-name">Ефимов Пётр</span>
-                    </div>
-                    <div class="myProject">
-                        <div class="caption">Мои проекты:</div>
-                        <ul>
-                            <li>Azazel is coming</li>
-                            <li>Paper pleat</li>
-                            <li>tablet.CO</li>
-                        </ul>
-                    </div>
-                    <div class="top-developer">
-                        <span class="caption-ul">Топ разработчиков:</span>
-                        <ul>
-                            <li>Гусаревичь Илья</li>
-                            <li>Ефимов Петр</li>
-                            <li>Горбачев Максим</li>
-                        </ul>
-                    </div>
-
-                    <button class="btn-content">Список работников</button>
+        <!--   ОРГАНИЗАЦИИ   -->
+        <div class="carusel main-organization-block" style="display: none">
+           <div class="carusel-huakin-org">
+                <!--Организации-->
+                <div class="main-block-inline myOrg">
+                    <div class="mainTitle">Организации</div>
                 </div>
+                <!--Управление-->
+                <div class="main-block-inline myOrgControl">
+                    <div class="mainTitle">
+                        Управление
+                        <div class="context-btn"><div class="context-content org-context-btn">Создать организацию...</div></div>
+                    </div>
+                </div>
+           </div>
+        </div>
+        
+        <!-- Список работников -->
+        <div class="modal-worker-list" style="display: none">
+            <div class="modal-form">
+                <div class="modal-close-btn modal-workerlist-close"></div>
+                <div class="intoteam-btn modal-intoteam-btn"></div>
+                <div class="modal-title-block">
+                    <div class="modal-title" id="workNameOrg"></div>
+                    <div class="project-sub-title modal-sub-title" id="workNameMemb"></div>
+                </div> 
+            <ul class="member-list">
+                <li class="member-list-item clearfix">
+                    <div class="left">
+                        <div class="member-avatar-block">
+                            <img src="../../IMG/avatar.svg" alt="" class="member-avatar-img">
+                            <div class="member-status"></div>
+                        </div>
+                        <div class="member-name-block">
+                            <div class="member-name">Гусаревич Илья Александрович</div>
+                            <div class="member-sub-name">Азазель Из Компинг</div>         
+                        </div>
+                    </div>
+                    <div class="right">
+                        <button class="send-mess-btn"></button>
+                        <button class="member-more-btn">Подробнее...</button>
+                    </div>
+                </li>
+                <li class="member-list-item clearfix">
+                    <div class="left">
+                        <div class="member-avatar-block">
+                            <img src="../../IMG/avatar.svg" alt="" class="member-avatar-img">
+                            <div class="member-status"></div>
+                        </div>
+                        <div class="member-name-block">
+                            <div class="member-name">Гусаревич Илья Александрович</div>
+                            <div class="member-sub-name">Азазель Из Компинг</div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <button class="send-mess-btn"></button>
+                        <button class="member-more-btn">Подробнее...</button>
+                    </div>
+                </li>
+                <li class="member-list-item clearfix">
+                    <div class="left">
+                        <div class="member-avatar-block">
+                            <img src="../../IMG/avatar.svg" alt="" class="member-avatar-img">
+                            <div class="member-status"></div>
+                        </div>
+                        <div class="member-name-block">
+                            <div class="member-name">Гусаревич Илья Александрович</div>
+                            <div class="member-sub-name">Азазель Из Компинг</div>
+
+                        </div>
+                    </div>
+                    <div class="right">
+                        <button class="send-mess-btn"></button>
+                        <button class="member-more-btn">Подробнее...</button>
+                    </div>
+                </li>
+            </ul>
             </div>
         </div>
+
 
     </div>
     <!--  Конец Центральный блок отображения  -->

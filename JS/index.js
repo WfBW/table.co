@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // список проектов
     var projectList;
+    // список организаций
+    var organizationList
     
     ////////////////////////////
     //   служебные функции   //
@@ -70,10 +72,57 @@ document.addEventListener("DOMContentLoaded", function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 mainView.innerHTML = xhr.responseText;
                 
-                var mainProjectBlock = document.querySelector(".projectList");
-                var backProjMore = document.querySelector("#mainBackProjMore");
-                var mainProjMore = document.querySelector(".main-project-more");
+                // определение переменных области видимости ф-ии mainHtml
+                var
+                    //кнопки бокового меню
+                    btnProject = document.querySelector(".project"),
+                    btnTask = document.querySelector(".task"),
+                    btnOrganization = document.querySelector(".organization"),
+                    
+                    // блоки главной области отображения
+                    mainTaskBlock = document.querySelector(".main-task-block"),
+                    mainOrganizationBlock = document.querySelector(".main-organization-block"),
+                    mainProjectBlock = document.querySelector(".projectList"),
+                    
+                    // подробнее о проекте
+                    backProjMore = document.querySelector("#mainBackProjMore"),
+                    mainProjMore = document.querySelector(".main-project-more"),
+                    
+                    // создание нового проекта
+                    btnNewProj = document.querySelector(".proj-context-btn"),
+                    mainProjNew = document.querySelector(".main-project-new"),
+                    btnNewProjCreate = document.querySelector(".create-project"),
+                    btnNewProjCancel = document.querySelector(".cancel-project"),
+                    
+                    // список работников организации
+                    workerListBlock = document.querySelector(".modal-worker-list"),
+                    workerListClose = document.querySelector(".modal-workerlist-close"),
+                    workerListIntoteam = document.querySelector(".modal-intoteam-btn"),
+                    
+                    // профиль
+                    btnProfile = document.querySelector(".avatar");
                 
+                  /////////////////////////////
+                 //   ДЕЙСТВИЯ С ПРОЕКТАМИ  //
+                //подробнее о проекте
+                function projMore (idProj, proj) {
+                    var
+                        titleProj = document.querySelector("#mainProjMoreTitle"),
+                        companyProj = document.querySelector("#mainNameCompany"),
+                        deadProj = document.querySelector("#mainProjMoreDead"),
+                        tzProj = document.querySelector("#mainProjMoreTZ"),
+                        complTask = document.querySelector("#mainTaskComplit"),
+                        countTask = document.querySelector("#mainTaskCount"),
+                        mainTaskList = document.querySelector("#mainProjMoreList");
+                    
+                    titleProj.innerHTML = proj.name;
+                    companyProj.innerHTML = proj.org;
+                    deadProj.innerHTML = proj.date;
+                    tzProj.innerHTML = proj.tz;
+                    
+                    mainProjectBlock.style.display = "none";
+                    mainProjMore.style.display = "block";
+                };
                 // создание элемекнта списка проектов
                 function projItem (container, projId) {
                     container.innerHTML +=
@@ -97,33 +146,43 @@ document.addEventListener("DOMContentLoaded", function () {
                         "</div>"+
                         "<button class=\"btn-content\" id=\"proj"+ projId.id_proj +"\">Подробнее...</button>"+
                     "</div>";
-                    document.querySelector("#proj"+projId.id_proj).onclick = function(){
+                    document.querySelector("#proj"+projId.id_proj).onclick = function (){
                         projMore(projId.id_proj, projId);  
                     };
                 };
                 
-                //подробнее о проекте
-                function projMore (idProj, proj) {
-                    var
-                        titleProj = document.querySelector("#mainProjMoreTitle"),
-                        companyProj = document.querySelector("#mainNameCompany"),
-                        deadProj = document.querySelector("#mainProjMoreDead"),
-                        tzProj = document.querySelector("#mainProjMoreTZ"),
-                        complTask = document.querySelector("#mainTaskComplit"),
-                        countTask = document.querySelector("#mainTaskCount"),
-                        mainTaskList = document.querySelector("#mainProjMoreList");
-                    
-                    titleProj.innerHTML = proj.name;
-                    companyProj.innerHTML = proj.org;
-                    deadProj.innerHTML = proj.date;
-                    tzProj.innerHTML = proj.tz;
-                    
-                    mainProjectBlock.style.display = "none";
-                    mainProjMore.style.display = "block";
-                }
-                
+                //назад в подробнее о проекте
                 backProjMore.onclick = function() {
                     mainProjMore.style.display = "none";
+                    mainProjectBlock.style.display = "block";
+                };
+                
+                // нажатие на создание проекта
+                btnNewProj.onclick = function () {
+                    mainProjectBlock.style.display = "none";
+                    
+                    var orgListNewProj = document.querySelector("#orgProjNew");
+                    
+                    mainProjNew.style.display = "block";
+                };
+                // нажатие на отмену в создании проекта
+                btnNewProjCancel.onclick = function () {
+                    mainProjNew.style.display = "none";
+                    mainProjectBlock.style.display = "block";
+                };
+                
+                // создание проекта
+                btnNewProjCreate.onclick = function () {
+                    var
+                        nameProj = document.querySelector("#nameProjectNew"),
+                        tzProj = document.querySelector("#textTzNew"),
+                        dateDeadProj = document.querySelector("#dateDeadlineNew");
+                    
+                    var orgListNewProj = document.querySelector("#orgProjNew");
+                    
+                    // ajax
+                    
+                    mainProjNew.style.display = "none";
                     mainProjectBlock.style.display = "block";
                 };
                 
@@ -138,7 +197,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     //контейнер с управлением
                     var myProjControl = document.querySelector(".myProjControl");
                     
-                    var caruselHuakin = document.querySelector(".carusel-huakin");
+                    var caruselHuakin = document.querySelector(".carusel-huakin-proj");
                     
                     for(var i=0; i < projectList[0].length; i++) {
                         projItem(myProj, projectList[0][i]);
@@ -150,19 +209,94 @@ document.addEventListener("DOMContentLoaded", function () {
                         caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
                     }
                 });
-                //конец ajax
+                //конец ajax получение проектов
+                //      КОНЕЦ ДЕЙСТВИЙ С ПРОЕКТАМИ     //
+                ////////////////////////////////////////
                 
+                  /////////////////////////////////
+                 //   ДЕЙСТВИЯ С ОРГАНИЗАЦИЯМИ  //
+                // отображение списка работников
+                function moreOrg (idOrg, orgListM) {
+                    var 
+                        workOrgName = document.querySelector("#workNameOrg"),
+                        workOrgNameMemb = document.querySelector("#workNameMemb");
+                    workOrgName.innerHTML = orgListM.name;
+                    workOrgNameMemb.innerHTML = orgListM.id_user;
+                    
+                    workerListBlock.style.display = "block";
+                };
+                // создание элемекнта списка организаций
+                function orgItem (container, orgList) {
+                    container.innerHTML +=
+                    "<div class=\"block-content\">"+
+                        "<div class=\"title-block\">"+
+                            "<span class=\"caption\">"+ orgList.name +"</span><br>"+
+                            "<img class=\"groupOut-btn\" src=\"../IMG/GroupOut.svg\">"+
+                        "</div>"+
+                        "<hr>"+
+                        "<div class=\"manager\">"+
+                            "Создатель проекта: <span class=\"manager-name\">"+ orgList.id_user +"</span>"+
+                        "</div>"+
+                        "<div class=\"myProject\">"+
+                            "<div class=\"caption\">Мои проекты:</div>"+
+                            "<ul>"+
+                                "<li>Azazel is coming</li>"+
+                                "<li>Paper boat</li>"+
+                                "<li>tablet.CO</li>"+
+                            "</ul>"+
+                        "</div>"+
+                        "<div class=\"top-developer\">"+
+                            "<span class=\"caption-ul\">Топ разработчиков:</span>"+
+                            "<ul>"+
+                                "<li>Гусаревичь Илья</li>"+
+                                "<li>Ефимов Петр</li>"+
+                                "<li>Горбачев Максим</li>"+
+                            "</ul>"+
+                        "</div>"+
+                        "<button class=\"btn-content\" id=\"org"+ orgList.id_org +"\">Список работников</button>"+
+                    "</div>";
+                    document.querySelector("#org"+orgList.id_org).onclick = function (){
+                        moreOrg(orgList.id_org, orgList);  
+                    };
+                };
+
+                //начало ajax получение проектов
+                ajax("POST", "http://tableco.ad-best.ru/php/org/getOrgData.php", false, 
+                     "login="+user.login+"&password="+user.password, function(response) {
+                    // ответ сервера в формате JSON
+                    organizationList = JSON.parse(response);
+                    
+                    //контейнер с проектами
+                    var myOrg = document.querySelector(".myOrg");
+                    //контейнер с управлением
+                    var myOrgControl = document.querySelector(".myOrgControl");
+                    
+                    var caruselHuakin = document.querySelector(".carusel-huakin-org");
+                    
+                    for(var i=0; i < organizationList[0].length; i++) {
+                        orgItem(myOrg, organizationList[0][i]);
+                        caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
+                    }
+                    
+                    for(var i=0; i < organizationList[1].length; i++) {
+                        orgItem(myOrgControl, organizationList[1][i]);
+                        caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
+                    }
+                });
+                //конец ajax получение проектов
+                
+                // кнопка закрыть в списке работников
+                workerListClose.onclick = function() {
+                    workerListBlock.style.display = "none";
+                };
+                //   КОНЕЦ ДЕЙСТВИЙ С ОРГАНИЗАЦИЯМИ    //
+                ////////////////////////////////////////
+                
+                // СКРЫТИЕ ОКНА ЗАГРУЗКИ
                 loadingBlock.style.display = "none";
 
                 /////////////////////////////
                 //ОТКРЫТИЕ БОКОВЫХ ВКЛАДОК//
-                var
-                    btnProject = document.querySelector(".project"),
-                    btnTask = document.querySelector(".task"),
-                    btnOrganization = document.querySelector(".organization"),
-                    mainTaskBlock = document.querySelector(".main-task-block"),
-                    mainOrganizationBlock = document.querySelector(".main-organization-block");
-
                 // вкладка задачи
                 btnTask.onclick = function () {
                     mainOrganizationBlock.style.display = "none";
@@ -172,6 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     btnTask.classList.add("active");
                     btnOrganization.classList.remove("active");
                     mainProjMore.style.display = "none";
+                    mainProjNew.style.display = "none";
                 }
                 // вкладка организации
                 btnOrganization.onclick = function () {
@@ -182,6 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     btnTask.classList.remove("active");
                     btnOrganization.classList.add("active");
                     mainProjMore.style.display = "none";
+                    mainProjNew.style.display = "none";
                 }
                 // вкладка проекты
                 btnProject.onclick = function () {
@@ -192,12 +328,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     btnTask.classList.remove("active");
                     btnOrganization.classList.remove("active");
                     mainProjMore.style.display = "none";
+                    mainProjNew.style.display = "none";
                 }
                 //      КОНЕЦ ВКЛАДОК     //
                 ////////////////////////////
 
                 //Кнопка аватара
-                var btnProfile = document.querySelector(".avatar");
                 btnProfile.onclick = function openProfile() {
                     var xhr = new XMLHttpRequest();
                     xhr.open("get", "../Pages/modalPages/profile.html");
