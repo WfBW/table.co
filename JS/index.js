@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var mainView = document.querySelector(".mainView");
     //Модальное окно
     var modal = document.querySelector(".modal");
+    var modalSt2 = document.querySelector(".modalSt2");
     //Блок загрузки
     var loadingBlock = document.querySelector(".loadingBlock");
     //Блок сообщения
@@ -89,10 +90,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     mainProjMore = document.querySelector(".main-project-more"),
                     
                     // создание нового проекта
-                    btnNewProj = document.querySelector(".proj-context-btn"),
+                    btnNewProj = document.querySelector("#proj-context-btn"),
                     mainProjNew = document.querySelector(".main-project-new"),
                     btnNewProjCreate = document.querySelector(".create-project"),
                     btnNewProjCancel = document.querySelector(".cancel-project"),
+                    
+                    // создание новой организации
+                    btnNewOrg = document.querySelector(".org-context-btn"),
+                    modalNewOrg = document.querySelector(".modal-create-org"),
                     
                     // список работников организации
                     workerListBlock = document.querySelector(".modal-worker-list"),
@@ -156,7 +161,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     mainProjMore.style.display = "none";
                     mainProjectBlock.style.display = "block";
                 };
-                
                 // нажатие на создание проекта
                 btnNewProj.onclick = function () {
                     mainProjectBlock.style.display = "none";
@@ -170,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     mainProjNew.style.display = "none";
                     mainProjectBlock.style.display = "block";
                 };
-                
                 // создание проекта
                 btnNewProjCreate.onclick = function () {
                     var
@@ -186,30 +189,37 @@ document.addEventListener("DOMContentLoaded", function () {
                     mainProjectBlock.style.display = "block";
                 };
                 
-                //начало ajax получение проектов
-                ajax("POST", "http://tableco.ad-best.ru/php/proj/getProjData.php", false, 
-                     "login="+user.login+"&password="+user.password, function(response) {
-                    // ответ сервера в формате JSON
-                    projectList = JSON.parse(response);
-                    
-                    //контейнер с проектами
-                    var myProj = document.querySelector(".myProj");
-                    //контейнер с управлением
-                    var myProjControl = document.querySelector(".myProjControl");
-                    
-                    var caruselHuakin = document.querySelector(".carusel-huakin-proj");
-                    
-                    for(var i=0; i < projectList[0].length; i++) {
-                        projItem(myProj, projectList[0][i]);
-                        caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
-                    }
-                    
-                    for(var i=0; i < projectList[1].length; i++) {
-                        projItem(myProjControl, projectList[1][i]);
-                        caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
-                    }
-                });
-                //конец ajax получение проектов
+                // генерация проектов
+                function projGenerate () {
+                    //начало ajax получение проектов
+                    ajax("POST", "http://tableco.ad-best.ru/php/proj/getProjData.php", false, 
+                         "login="+user.login+"&password="+user.password, function(response) {
+                        // ответ сервера в формате JSON
+                        projectList = JSON.parse(response);
+
+                        //контейнер с проектами
+                        var myProj = document.querySelector(".myProj");
+                        //контейнер с управлением
+                        var myProjControl = document.querySelector(".myProjControl");
+
+                        var caruselHuakin = document.querySelector(".carusel-huakin-proj");
+                        
+                        myProj.innerHTML = "";
+                        myProjControl.innerHTML = "";
+
+                        for(var i=0; i < projectList[0].length; i++) {
+                            projItem(myProj, projectList[0][i]);
+                            caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
+                        }
+
+                        for(var i=0; i < projectList[1].length; i++) {
+                            projItem(myProjControl, projectList[1][i]);
+                            caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
+                        }
+                    });
+                    //конец ajax получение проектов
+                };
+                projGenerate();
                 //      КОНЕЦ ДЕЙСТВИЙ С ПРОЕКТАМИ     //
                 ////////////////////////////////////////
                 
@@ -217,13 +227,43 @@ document.addEventListener("DOMContentLoaded", function () {
                  //   ДЕЙСТВИЯ С ОРГАНИЗАЦИЯМИ  //
                 // отображение списка работников
                 function moreOrg (idOrg, orgListM) {
-                    var 
-                        workOrgName = document.querySelector("#workNameOrg"),
-                        workOrgNameMemb = document.querySelector("#workNameMemb");
-                    workOrgName.innerHTML = orgListM.name;
-                    workOrgNameMemb.innerHTML = orgListM.id_user;
-                    
-                    workerListBlock.style.display = "block";
+                    return function () {
+                        var 
+                            workOrgName = document.querySelector("#workNameOrg"),
+                            workOrgNameMemb = document.querySelector("#workNameMemb"),
+                            workMemberList = document.querySelector(".member-list");
+                        workOrgName.innerHTML = orgListM.name;
+                        workOrgNameMemb.innerHTML = orgListM.mngr;
+
+                        // получение списка сотрудников
+                        ajax("POST", "http://tableco.ad-best.ru/php/org/showWorkers.php", false, 
+                             "login="+user.login+"&password="+user.password+"&id_org="+idOrg, function(response) {
+                            var workerList = JSON.parse(response);
+
+                            workMemberList.innerHTML = "";
+                            for(var i = 0; i < workerList.length; i++){
+                                workMemberList.innerHTML += "<li class=\"member-list-item clearfix\">"+
+                                    "<div class=\"left\">"+
+                                        "<div class=\"member-avatar-block\">"+
+                                            "<img src=\""+ (workerList[i].img == 0? "../../IMG/avatar.svg":workerList[i].img) +
+                                                "\" alt=\"\" class=\"member-avatar-img\">"+
+                                        "</div>"+
+                                        "<div class=\"member-name-block\">"+
+                                            "<div class=\"member-name\">"+ workerList[i].fname +" "+ workerList[i].name +"</div>"+
+                                            "<div class=\"member-sub-name\">"+ workerList[i].proj +"</div>"+      
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class=\"right\">"+
+                                        "<button class=\"send-mess-btn\"></button>"+
+                                        "<button class=\"member-more-btn\">Подробнее...</button>"+
+                                    "</div>"+
+                                "</li>";
+                            }
+                        });
+
+                        modal.style.display = "block";
+                        workerListBlock.style.display = "block";
+                    };
                 };
                 // создание элемекнта списка организаций
                 function orgItem (container, orgList) {
@@ -235,7 +275,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         "</div>"+
                         "<hr>"+
                         "<div class=\"manager\">"+
-                            "Создатель проекта: <span class=\"manager-name\">"+ orgList.id_user +"</span>"+
+                            "Создатель организации: <span class=\"manager-name\">"+ orgList.mngr +"</span>"+
                         "</div>"+
                         "<div class=\"myProject\">"+
                             "<div class=\"caption\">Мои проекты:</div>"+
@@ -255,38 +295,79 @@ document.addEventListener("DOMContentLoaded", function () {
                         "</div>"+
                         "<button class=\"btn-content\" id=\"org"+ orgList.id_org +"\">Список работников</button>"+
                     "</div>";
-                    document.querySelector("#org"+orgList.id_org).onclick = function (){
-                        moreOrg(orgList.id_org, orgList);  
+                    document.querySelector("#org"+orgList.id_org).onclick = moreOrg(orgList.id_org, orgList);  
+                };
+                
+                // генерация списка организаций
+                function orgGenerate () {
+                    //начало ajax получение организаций
+                    ajax("POST", "http://tableco.ad-best.ru/php/org/getOrgData.php", false, 
+                         "login="+user.login+"&password="+user.password, function(response) {
+                        // ответ сервера в формате JSON
+                        organizationList = JSON.parse(response);
+
+                        //контейнер с проектами
+                        var myOrg = document.querySelector(".myOrg");
+                        //контейнер с управлением
+                        var myOrgControl = document.querySelector(".myOrgControl");
+                        
+                        var caruselHuakinOrg = document.querySelector(".carusel-huakin-org");
+                        
+                        myOrg.innerHTML = "";
+                        myOrgControl.innerHTML = "";
+                        
+                        for(var i=0; i < organizationList[0].length; i++) {
+                            orgItem(myOrg, organizationList[0][i]);
+                            caruselHuakinOrg.style.width = (caruselHuakinOrg.offsetWidth + 390) + "px";
+                        }
+
+                        for(var i=0; i < organizationList[1].length; i++) {
+                            orgItem(myOrgControl, organizationList[1][i]);
+                            caruselHuakinOrg.style.width = (caruselHuakinOrg.offsetWidth + 390) + "px";
+                        }
+                    }); //конец ajax получение организаций
+                };
+                orgGenerate();
+                
+                // создание новой организации
+                btnNewOrg.onclick = function () {
+                    modal.style.display = "block";
+                    modalNewOrg.style.display = "block";
+                    var nameNewOrg = document.querySelector("#nameNewOrg");
+                    document.querySelector("#createNewOrg").onclick = function () {
+                        if(nameNewOrg.value !== "") {
+                            ajax("POST", "http://tableco.ad-best.ru/php/org/addOrg.php", false,
+                            "login="+user.login+"&password="+user.password+"&name="+nameNewOrg.value, function(response){
+                                orgGenerate();
+                                modal.style.display = "none";
+                                modalNewOrg.style.display = "none";
+                            });
+                        } else {
+                            showInputsError("Поле не должно быть пустое", 2);
+                        }
+                    }
+                    document.querySelector("#cancelNewOrg").onclick = function () {
+                        nameNewOrg.nodeValue = "";
+                        modal.style.display = "none";
+                        modalNewOrg.style.display = "none";
                     };
                 };
-
-                //начало ajax получение проектов
-                ajax("POST", "http://tableco.ad-best.ru/php/org/getOrgData.php", false, 
-                     "login="+user.login+"&password="+user.password, function(response) {
-                    // ответ сервера в формате JSON
-                    organizationList = JSON.parse(response);
+                
+                // кнопка добавить в организацию в списке работников
+                workerListIntoteam.onclick = function () {
+                    var modalInviteOrg = document.querySelector(".modal-invite-org");
+                    //modalSt2.style.display = "block";
+                    modalInviteOrg.style.display = "block";
                     
-                    //контейнер с проектами
-                    var myOrg = document.querySelector(".myOrg");
-                    //контейнер с управлением
-                    var myOrgControl = document.querySelector(".myOrgControl");
-                    
-                    var caruselHuakin = document.querySelector(".carusel-huakin-org");
-                    
-                    for(var i=0; i < organizationList[0].length; i++) {
-                        orgItem(myOrg, organizationList[0][i]);
-                        caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
-                    }
-                    
-                    for(var i=0; i < organizationList[1].length; i++) {
-                        orgItem(myOrgControl, organizationList[1][i]);
-                        caruselHuakin.style.width = (caruselHuakin.offsetWidth + 361) + "px";
-                    }
-                });
-                //конец ajax получение проектов
+                    document.querySelector("#cancel-invite-org").onclick = function () {
+                        modalInviteOrg.style.display = "none";
+                        //modalSt2.style.display = "none";
+                    };
+                };
                 
                 // кнопка закрыть в списке работников
                 workerListClose.onclick = function() {
+                    modal.style.display = "none";
                     workerListBlock.style.display = "none";
                 };
                 //   КОНЕЦ ДЕЙСТВИЙ С ОРГАНИЗАЦИЯМИ    //

@@ -115,6 +115,7 @@ button {
     cursor: pointer;
     transition-property: background;
     transition-duration: 0.3s;
+    outline: none;
 }
 
 hr {
@@ -186,12 +187,9 @@ progress::-webkit-progress-value {
     height: 10px;
     cursor: pointer;
 }
-.context-btn:hover .context-content {
-	opacity: 1;
-}
 
 .context-content {
-    opacity: 0;
+    display: none;
     position: absolute;
     left: -5px;
     top: -5px;
@@ -204,8 +202,11 @@ progress::-webkit-progress-value {
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
-    z-index: 2;
     transition: all 0.4s ease-out;
+}
+
+.context-btn:hover .context-content {
+	display: block;
 }
 
 /* блок проекты, организации */
@@ -335,7 +336,210 @@ progress::-webkit-progress-value {
     left: 0px;
     width: 100%;
     height: 100%;
-    z-index: 100;
+    z-index: 5;
     overflow-x: hidden;
     overflow-y: scroll;
+}
+
+/* модальные окна */
+.modal-context-form button, .modal-form botton {
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+/* модальная форма */
+.modal-form {
+    position: relative;
+    width: 540px;
+    height: auto;
+    border-radius: 15px;
+    background: #fff;
+    padding: 33px 30px;
+    margin: 45px auto 45px auto;
+    
+    border: 1px solid #C4CAD8;
+    font-family: Roboto;
+    box-sizing: border-box;
+}
+
+/* форма модального окна */
+.modal-title-block {
+    margin: 0px auto 33px auto;
+}
+
+/* заголовок модального окна */
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #3e3e3e;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+/* подзаголовок модального окна */
+.modal-sub-title {
+    font-size: 24px;
+    color: #A8ACB7;
+    text-align: center;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+    background: url(../../IMG/close-menu.svg) no-repeat center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+/* Аватар в окне */
+.avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #A8ACB7;
+    margin-bottom: 20px;
+}
+
+/* Выравнивание */
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+/* устранение выпадения float из потока */
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* label и input глобальные стили */
+.modal-context-form label, .modal-form label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #3E3E3E;
+    display: inline-block;
+}
+
+.modal-context-form input, .modal-context-form textarea, .modal-context-form select,
+.modal-form input, .modal-form textarea, .modal-form select {
+    font-size: 15px;
+    padding: 8px 10px;
+    width: 250px;
+    border: 1px solid #C4CAD8;
+    border-radius: 6px;
+    display: inline-block;
+    margin-left: 20px;
+    outline: none;
+    resize: none;
+    color: #3e3e3e;
+}
+
+/* Блок с информацией */
+.info-block {
+    text-align: right;
+    width: 405px;
+    margin: 60px auto 0px auto;
+}
+
+.info-block > ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.info-block > ul > li {
+    margin-bottom: 15px;
+}
+
+.info-block > ul > li:last-child {
+    margin-bottom: 0px;
+    display: inline-flex;
+}
+
+
+
+/* КОНТЕКСТНЫЕ ОКНА (invite_team, invite_project) */
+.modal-context-form {
+    width: 334px;
+    border-radius: 15px;
+    padding: 20px;
+    position: absolute;
+    left: calc(50% - 167px);
+    top: calc(50% - 92px);
+    
+    border: 1px solid #000;
+    font-family: Roboto;
+    box-sizing: border-box;
+}
+
+.modal-context-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.modal-invite-btn {
+    background: #299EFF;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 3px;
+    width: 135px;
+    margin-right: 18px;
+}
+
+.modal-cancel-btn {
+    background: none;
+    color: #3e3e3e;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 8px 20px;
+    border-radius: 3px;
+    border: 2px solid #C4CAD8;
+    width: 135px;
+}
+
+/* input в контекстных окнах (приглашение в команду, приглашение в проект) */
+.modal-context-input {
+    margin: 0 0 10px 0;
+    width: 100%;
+    color: #3e3e3e;
+}
+
+/* окно вопроса (да или нет) */
+.question-btn {
+    width: 100px;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.yes-btn {
+    background: #F24040;
+    margin-top: 25px;
+}
+
+.no-btn {
+    background: #299EFF;
+    margin-top: 25px;
+}
+/* конец модальные окна */
+.modalst2 {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
 }

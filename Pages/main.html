@@ -1,7 +1,3 @@
-<!--
-    <link rel="stylesheet" type="text/css" href="../CSS/default.css">
-    <link rel="stylesheet" type="text/css" href="../CSS/main.css">
--->
 <div class="main-block-container">
     <!--  Левый блок с навигацией  -->
     <div class="left-bar">
@@ -31,15 +27,17 @@
         <div class="carusel projectList">
             <div class="carusel-huakin-proj">
                 <!--мои Проекты-->
-                <div class="main-block-inline myProj" style="display: block">
+                <div class="main-block-inline">
                     <div class="mainTitle">Проекты</div>
+                    <div class="myProj"></div>
                 </div>
                 <!--Управление-->
-                <div class="main-block-inline myProjControl" style="display: block">
+                <div class="main-block-inline">
                     <div class="mainTitle">
                         Управление
-                        <div class="context-btn"><div class="context-content proj-context-btn">Создать проект...</div></div>
+                        <div class="context-btn"><div class="context-content" id="proj-context-btn">Создать проект...</div></div>
                     </div>
+                    <div class="myProjControl"></div>
                 </div>
             </div>
             <!-- /.huakin -->
@@ -107,6 +105,29 @@
                 <button class="create-project">Создать</button>
                 <button class="cancel-project">Отмена</button>
             </div>
+        </div>
+        
+        <!--   Создание новой задачи    -->
+        <div class="modal-addtask-form modal-form" style="display: none">
+            <div class="modal-title">Новая задача</div>
+            <textarea type="text" id="nameTaskNew" placeholder="Название задачи..." rows="3"></textarea>
+            <label for="dateTaskNew" class="text14gray">Дата исполнения:</label>
+            <input type="date" id="dateTaskNew">
+            <label for="impTaskNew" class="text14gray">Степень важности:</label>
+            <select id="impTaskNew" class="impTaskNew" required>
+                <option value="" disabled selected hidden>Выберите степень важности...</option>
+                <option value="0">Не важно</option>
+                <option value="1">Низкая степень</option>
+                <option value="2">Средняя степень</option>
+                <option value="3">Высокая степень</option>
+            </select>
+            <label for="impTaskNew" class="text14gray">Исполнитель:</label>
+            <select id="impTaskNew" required>
+                <option value="" disabled selected hidden>Выберите исполнителя...</option>
+            </select>
+
+            <button class="create-task">Создать</button>
+            <button class="cancel-task">Отмена</button>
         </div>
        
         <!--   ЗАДАЧИ   -->
@@ -186,22 +207,32 @@
                 </ul>
             </div>
         </div>
-
+       
         <!--   ОРГАНИЗАЦИИ   -->
         <div class="carusel main-organization-block" style="display: none">
            <div class="carusel-huakin-org">
                 <!--Организации-->
-                <div class="main-block-inline myOrg">
+                <div class="main-block-inline">
                     <div class="mainTitle">Организации</div>
+                    <div class="myOrg"></div>
                 </div>
                 <!--Управление-->
-                <div class="main-block-inline myOrgControl">
+                <div class="main-block-inline">
                     <div class="mainTitle">
                         Управление
                         <div class="context-btn"><div class="context-content org-context-btn">Создать организацию...</div></div>
                     </div>
+                    <div class="myOrgControl"></div>
                 </div>
            </div>
+        </div>
+        
+        <!-- Создание новой организации -->
+        <div class="modal-create-org modal-form" style="display: none; z-index: 15" >
+            <div class="modal-context-title">Создание организации</div>
+            <input type="text" id="nameNewOrg" placeholder="Название организации...">
+            <button class="modal-invite-btn" id="createNewOrg">Создать</button>
+            <button class="modal-cancel-btn" id="cancelNewOrg">Отмена</button>
         </div>
         
         <!-- Список работников -->
@@ -213,61 +244,34 @@
                     <div class="modal-title" id="workNameOrg"></div>
                     <div class="project-sub-title modal-sub-title" id="workNameMemb"></div>
                 </div> 
-            <ul class="member-list">
-                <li class="member-list-item clearfix">
-                    <div class="left">
-                        <div class="member-avatar-block">
-                            <img src="../../IMG/avatar.svg" alt="" class="member-avatar-img">
-                            <div class="member-status"></div>
-                        </div>
-                        <div class="member-name-block">
-                            <div class="member-name">Гусаревич Илья Александрович</div>
-                            <div class="member-sub-name">Азазель Из Компинг</div>         
-                        </div>
-                    </div>
-                    <div class="right">
-                        <button class="send-mess-btn"></button>
-                        <button class="member-more-btn">Подробнее...</button>
-                    </div>
-                </li>
-                <li class="member-list-item clearfix">
-                    <div class="left">
-                        <div class="member-avatar-block">
-                            <img src="../../IMG/avatar.svg" alt="" class="member-avatar-img">
-                            <div class="member-status"></div>
-                        </div>
-                        <div class="member-name-block">
-                            <div class="member-name">Гусаревич Илья Александрович</div>
-                            <div class="member-sub-name">Азазель Из Компинг</div>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <button class="send-mess-btn"></button>
-                        <button class="member-more-btn">Подробнее...</button>
-                    </div>
-                </li>
-                <li class="member-list-item clearfix">
-                    <div class="left">
-                        <div class="member-avatar-block">
-                            <img src="../../IMG/avatar.svg" alt="" class="member-avatar-img">
-                            <div class="member-status"></div>
-                        </div>
-                        <div class="member-name-block">
-                            <div class="member-name">Гусаревич Илья Александрович</div>
-                            <div class="member-sub-name">Азазель Из Компинг</div>
-
-                        </div>
-                    </div>
-                    <div class="right">
-                        <button class="send-mess-btn"></button>
-                        <button class="member-more-btn">Подробнее...</button>
-                    </div>
-                </li>
-            </ul>
+                <ul class="member-list"></ul>
+                
+                <!--      Приглашение в организацию      -->
+                <div class="modal-invite-org" style="display: none">
+                    <div class="modal-context-title">Приглашение в команду</div>
+                    <input type="text" id="loginUserIO" list="dataLUIO" class="modal-context-input"  placeholder="Логин пользователя">
+                    <datalist id="dataLUIO">
+                        <option value="Горбачев Максим"></option>
+                    </datalist>
+                    <button class="modal-invite-btn" id="ok-invite-org">Пригласить</button>
+                    <button class="modal-cancel-btn" id="cancel-invite-org">Отмена</button>
+                </div>
             </div>
-        </div>
+            
 
-
-    </div>
-    <!--  Конец Центральный блок отображения  -->
+            
+            <!--     Приглашение в проект       -->
+            <div class="modal-invite-proj" style="display: none">
+                <div class="modal-context-title">Приглашение</div>
+                <select name="projectName" id="projectNameIP" class="modal-context-input">
+                    <option value=""  disabled selected hidden>Проект</option>
+                    <option value="pj1">Project 1</option>
+                    <option value="pj2">Project 2</option>
+                    <option value="pj3">Project 3</option>
+                </select>
+                <button class="modal-invite-btn" id="ok-invite-proj">Пригласить</button>
+                <button class="modal-cancel-btn" id="cancel-invite-proj">Отмена</button>
+            </div>
+        </div> <!-- Конец Список работников -->
+    </div> <!--  Конец Центральный блок отображения  -->
 </div>
