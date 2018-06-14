@@ -163,11 +163,53 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
                 // нажатие на создание проекта
                 btnNewProj.onclick = function () {
+                    // section с организациями
+                    var orgListNewProj = document.querySelector("#orgProjNewSection");
+                    
+                    var nameProjectInput = document.querySelector("#nameProjectNew"); 
+                    var tzProjectInput = document.querySelector("#textTzNew"); 
+                    var dateProjectInput = document.querySelector("#dateDeadlineNew"); 
+                    
+                    var btnNewProjOk - document.querySelector("#ok-create-proj");
+                    var btnNewProjCancel - document.querySelector("#cancel-create-proj");
+                    
+                    orgListNewProj.innerHTML = "";
+                    orgListNewProj.innerHTML = "<option value="" disabled selected hidden>Выберите организацию...</option>";
+                    
+                    ajax("POST", "#", false, "login="+user.login+"&password="+user.password, function(response) {
+                        var orgListProj = JSON.parse(response);
+                        for(var i=0; i < orgListNewProj.lenght; i++){
+                            orgListNewProj.innerHTML += "<option value=\""+ orgListProj[i].id_org +"\">"+ orgListProj[i].name +"</option>";
+                        }
+                    });
+                                        
                     mainProjectBlock.style.display = "none";
-                    
-                    var orgListNewProj = document.querySelector("#orgProjNew");
-                    
                     mainProjNew.style.display = "block";
+                    
+                    btnNewProjOk.onclick = function() {
+                        if(nameProjectInput.value != "" & tzProjectInput.value != "" 
+                           & dateProjectInput.value != "" & orgListNewProj.value != "") {
+                            ajax("POST", "#", false, "login="+user.login+"&password="+user.password+"&nameProj="+nameProjectInput.value+"&tzProj="+tzProjectInput.value+"&dateProj="+dateProjectInput.value+"&id_org="+orgListNewProj.value, function(response){
+                                mainProjNew.style.display = "none";
+                                mainProjectBlock.style.display = "block";
+                                nameProjectInput.value = "";
+                                tzProjectInput.value = "";
+                                dateProjectInput.value = "";
+                                orgListNewProj.value = "";
+                            });
+                        } else {
+                            showInputsError("Все поля должны быть заполнены", 2);
+                        }
+                    };
+                    
+                    btnNewProjCancel.onclick = function () {
+                        mainProjNew.style.display = "none";
+                        mainProjectBlock.style.display = "block";
+                        nameProjectInput.value = "";
+                        tzProjectInput.value = "";
+                        dateProjectInput.value = "";
+                        orgListNewProj.value = "";
+                    };
                 };
                 // нажатие на отмену в создании проекта
                 btnNewProjCancel.onclick = function () {
