@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function () {
     //Блок сообщения
     var alertBlock = document.querySelector(".index-alert-block");
     
+    // список с данными о текущем пользователе
     var user = {
         login: null,
         password: null
     };
-    
     // список проектов
     var projectList;
     // список организаций
@@ -92,8 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     // создание нового проекта
                     btnNewProj = document.querySelector("#proj-context-btn"),
                     mainProjNew = document.querySelector(".main-project-new"),
-                    btnNewProjCreate = document.querySelector(".create-project"),
-                    btnNewProjCancel = document.querySelector(".cancel-project"),
                     
                     // создание новой организации
                     btnNewOrg = document.querySelector(".org-context-btn"),
@@ -119,6 +117,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         complTask = document.querySelector("#mainTaskComplit"),
                         countTask = document.querySelector("#mainTaskCount"),
                         mainTaskList = document.querySelector("#mainProjMoreList");
+                    // кнопка создание новой задачи
+                    var createTaskBtn = document.querySelector("#createTaskBtn");
                     
                     titleProj.innerHTML = proj.name;
                     companyProj.innerHTML = proj.org;
@@ -127,6 +127,68 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                     mainProjectBlock.style.display = "none";
                     mainProjMore.style.display = "block";
+                    
+                    createTaskBtn.onclick = function () {
+                        var nameTaskNew = document.querySelector("#nameTaskNew");
+                        var dateTaskNew = document.querySelector("#dateTaskNew");
+                        var impTaskNewSection = document.querySelector("#impTaskNew");
+                        var workerTaskNewSection = document.querySelector("#workerTaskNew");
+                        
+                        var btnNewTaskOk = document.querySelector("#ok-create-task");
+                        var btnNewTaskCancel = document.querySelector("#cancel-create-task");
+                        
+                        var addTaskForm = document.querySelector(".modal-addtask-form");
+                        
+                        workerTaskNewSection.innerHTML = "";
+                        workerTaskNewSection.innerHTML = "<option value=\"\" disabled selected hidden>Выберите исполнителя...</option>";
+                        
+                        ajax("POST", "#", false, 
+                             "login="+user.login+"&password="+user.password+"&id_proj="+idProj, function(response){
+                            var workerListNewTask = JSON.parse(response);
+                            for(var i=0; i<workerListNewTask.length; i++) {
+                                workerListNewTask += "<option value=\""+ workerListNewTask[i].id_user +
+                                    "\">"+ workerListNewTask[i].name +"</option>";
+                            }
+                        });
+                        
+                        modal.style.display = "block";
+                        addTaskForm.style.display = "block";
+                        
+                        btnNewTaskOk.onclick = function() {
+                            if(nameTaskNew.value !="" & dateTaskNew.value !="" impTaskNewSection.value !="" & workerTaskNewSection.value !="") {
+                                ajax("POST", "#", false,
+                                        "login="+user.login+"&password="+user.password+"&nameTask="+nameTaskNew.value+
+                                     "&dateTask="+dateTaskNew.value+"&imp="+impTaskNewSection.value+
+                                    "&id_user="+workerTaskNewSection.value, function(response){
+                                    addTaskForm.style.display = "none";
+                                    modal.style.display = "none";
+                                    nameTaskNew.value = "";
+                                    dateTaskNew.value = "";
+                                    impTaskNewSection.value = "";
+                                    workerTaskNewSection.value = "";
+                                    
+                                    generateTask();
+                                });
+                            } else {
+                                showInputsError("Все поля должны быть заполнены", 2);
+                            }
+                        };
+                        
+                        btnNewTaskCancel.onclick = function () {
+                            addTaskForm.style.display = "none";
+                            modal.style.display = "none";
+                            nameTaskNew.value = "";
+                            dateTaskNew.value = "";
+                            impTaskNewSection.value = "";
+                            workerTaskNewSection.value = "";
+                        };
+                    };
+                    
+                    //назад в подробнее о проекте
+                    backProjMore.onclick = function() {
+                        mainProjMore.style.display = "none";
+                        mainProjectBlock.style.display = "block";
+                    };
                 };
                 // создание элемекнта списка проектов
                 function projItem (container, projId) {
@@ -155,12 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         projMore(projId.id_proj, projId);  
                     };
                 };
-                
-                //назад в подробнее о проекте
-                backProjMore.onclick = function() {
-                    mainProjMore.style.display = "none";
-                    mainProjectBlock.style.display = "block";
-                };
+
                 // нажатие на создание проекта
                 btnNewProj.onclick = function () {
                     // section с организациями
@@ -170,11 +227,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     var tzProjectInput = document.querySelector("#textTzNew"); 
                     var dateProjectInput = document.querySelector("#dateDeadlineNew"); 
                     
-                    var btnNewProjOk - document.querySelector("#ok-create-proj");
-                    var btnNewProjCancel - document.querySelector("#cancel-create-proj");
+                    var btnNewProjOk = document.querySelector("#ok-create-proj");
+                    var btnNewProjCancel = document.querySelector("#cancel-create-proj");
                     
                     orgListNewProj.innerHTML = "";
-                    orgListNewProj.innerHTML = "<option value="" disabled selected hidden>Выберите организацию...</option>";
+                    orgListNewProj.innerHTML = "<option value=\"\" disabled selected hidden>Выберите организацию...</option>";
                     
                     ajax("POST", "#", false, "login="+user.login+"&password="+user.password, function(response) {
                         var orgListProj = JSON.parse(response);
@@ -210,25 +267,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         dateProjectInput.value = "";
                         orgListNewProj.value = "";
                     };
-                };
-                // нажатие на отмену в создании проекта
-                btnNewProjCancel.onclick = function () {
-                    mainProjNew.style.display = "none";
-                    mainProjectBlock.style.display = "block";
-                };
-                // создание проекта
-                btnNewProjCreate.onclick = function () {
-                    var
-                        nameProj = document.querySelector("#nameProjectNew"),
-                        tzProj = document.querySelector("#textTzNew"),
-                        dateDeadProj = document.querySelector("#dateDeadlineNew");
-                    
-                    var orgListNewProj = document.querySelector("#orgProjNew");
-                    
-                    // ajax
-                    
-                    mainProjNew.style.display = "none";
-                    mainProjectBlock.style.display = "block";
                 };
                 
                 // генерация проектов
@@ -393,8 +431,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         };
                     };
                 };// конец отображение списка работников
-                
-                // создание элемекнта списка организаций
+                // создание элемента списка организаций
                 function orgItem (container, orgList) {
                     container.innerHTML +=
                     "<div class=\"block-content\">"+
@@ -483,6 +520,73 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
                 //   КОНЕЦ ДЕЙСТВИЙ С ОРГАНИЗАЦИЯМИ    //
                 ////////////////////////////////////////
+                
+                /////////////////////////////////
+                //   ДЕЙСТВИЯ С ЗАДАЧАМИ      //
+                // нажатие на checkbox задачи
+                function checkTask (idTask) {
+                    ajax("POST", "#", false, "login="+user.login+"&password="+user.password+"&id_task="+idTask, function(response){
+                        // что должно происходить кроме отправки ajax??
+                    });
+                }
+                // создание элемента списка задач
+                function taskItem (container, taskList) {
+                    var colorStatus;
+                    switch (taskList.status) {
+                        case 0:
+                            colorStatus = "#C4CAD8";
+                            break;
+                        case 1:
+                            colorStatus = "#299EFF";
+                            break;
+                        case 2:
+                            colorStatus = "#FFB550";
+                            break;
+                        case 3:
+                            colorStatus = "#F24040";
+                            break;
+                        default:
+                            colorStatus = "#F7F8FA";
+                    }
+                    container.innerHTML += "<li class=\"item-task\">"+
+                        "<div class=\"task-block\">"+
+                            "<div class=\"status\" style=\"background: "+ colorStatus +"\"></div>"+
+                            "<input type=\"checkbox\" class=\"check-task\" id=\"task"+ taskList.id_task +
+                                "\""+(taskList.check?" checked":"")+">"+
+                            "<label for=\""+ taskList.id_task +"\"><span class=\"task-text\">"+ taskList.name +"</span></label>"+
+                            "<div class=\"tasks-right-block\">"+
+                                "<span class=\"project-text\">"+ taskList.name_proj +"</span>"+
+                                "<span class=\"task-date\">"+ taskList.date +"</span>"+
+                            "</div>"+
+                        "</div>"+
+                    "</li>";
+                    document.querySelector("#task"+taskList.id_task).onclick = checkTask(taskList.id_task);
+                };
+                // генерация списка задач
+                function generateTask () {
+                    ajax("POST", "#", false, 
+                         "login="+user.login+"&password="+user.password, function(response) {
+                        var tasksList = JSON.parse(response);
+                        
+                        // контейнеры для задач
+                        var myTaskContainer = document.querySelector("#mainMyTaskContainer");
+                        var controlTaskContainer = document.querySelector("#mainControlTaskContainer");
+                        
+                        myTaskContainer.innerHTML = "";
+                        controlTaskContainer.innerHTML = "";
+                        
+                        for(var i=0; i<tasksList[0].length; i++) {
+                            taskItem(myTaskContainer, tasksList[0][i]);
+                        }
+                        
+                        for(var i=0; i<tasksList[1].length; i++) {
+                            taskItem(controlTaskContainer, tasksList[1][i]);
+                        }
+                    });
+                };
+                generateTask();
+                //   КОНЕЦ ДЕЙСТВИЙ С ЗАДАЧАМИ  //
+                //////////////////////////////////
                 
                 // СКРЫТИЕ ОКНА ЗАГРУЗКИ
                 loadingBlock.style.display = "none";

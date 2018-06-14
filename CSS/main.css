@@ -676,10 +676,11 @@
     box-sizing: border-box;
     margin: 45px auto;
     padding: 15px 25px 25px;
-    width: 80%;
+    width: 60%;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 3px 30px -10px rgba(0,0,0, 0.2);
+    z-index: 20;
 }
 
 .modal-addtask-form input, 

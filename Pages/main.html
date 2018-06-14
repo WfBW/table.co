@@ -47,30 +47,21 @@
         <div class="main-project-more" style="display: none">
             <header class="headerTitle">
                 <div class="back-btn" id="mainBackProjMore"></div>
-                <div class="mainTitle" id="mainProjMoreTitle"></div>
+                <div class="mainTitle" id="mainProjMoreTitle">
+                    <div class="context-btn"><div class="context-content" id="createTaskBtn">Добавить задачу...</div></div>
+                </div>
             </header>
-
             <img class="proj-mark-more" src="../IMG/mark.svg">
-
             <div class="block-positioner">
                 <div class="pj-organization text14b">Организация: <span class="name-company text14gray" id="mainNameCompany"></span></div>
-
                 <div class="deadline">
                     <div class="caption">Дедлайн: </div>
                     <span class="dead-date-more" id="mainProjMoreDead">2 дня (14.04.2016)</span>
                 </div>
-
-                <!--
-                <div class="manager">
-                    Менеджер проекта: <span class="manager-name">Ефимов Пётр</span>
-                </div>
-                -->
-
                 <div class="tz">
                     <span class="caption">Техническое задание:</span>
                     <p class="tz-text" id="mainProjMoreTZ"></p>
                 </div>
-
                 <div class="zadachi-more">
                     <span class="caption-ul">Мои задачи:</span>
                     <div class="readyTask-text">Готово
@@ -95,20 +86,18 @@
         <div class="main-project-new" style="display: none">
             <div class="mainTitle">Новый проект</div>
             <div class="block-positioner new-project">
-                <input type="text" name="name_project" id="nameProjectNew" placeholder="Название проекта...">
-                <textarea name="text_tz" id="textTzNew" rows="10" placeholder="Техническое задание к проекту..."></textarea>
+                <input type="text" name="name_project" id="nameProjectNew" placeholder="Название проекта..." required>
+                <textarea name="text_tz" id="textTzNew" rows="10" placeholder="Техническое задание к проекту..." required></textarea>
                 <label for="dateDeadlineNew" class="text14gray">Дата дедлайна</label>
-                <input type="date" id="dateDeadlineNew">
-                <select id="orgProjNewSection" required>
-                    
-                </select>
+                <input type="date" id="dateDeadlineNew" required>
+                <select id="orgProjNewSection" required></select>
                 <button class="create-project" id="ok-create-proj">Создать</button>
                 <button class="cancel-project" id="cancel-create-proj">Отмена</button>
             </div>
         </div>
         
         <!--   Создание новой задачи    -->
-        <div class="modal-addtask-form modal-form" style="display: none">
+        <div class="modal-addtask-form modal-form" style="display: block">
             <div class="modal-title">Новая задача</div>
             <textarea type="text" id="nameTaskNew" placeholder="Название задачи..." rows="3"></textarea>
             <label for="dateTaskNew" class="text14gray">Дата исполнения:</label>
@@ -121,13 +110,13 @@
                 <option value="2">Средняя степень</option>
                 <option value="3">Высокая степень</option>
             </select>
-            <label for="impTaskNew" class="text14gray">Исполнитель:</label>
-            <select id="impTaskNew" required>
+            <label for="workerTaskNew" class="text14gray">Исполнитель:</label>
+            <select id="workerTaskNew" required>
                 <option value="" disabled selected hidden>Выберите исполнителя...</option>
             </select>
 
-            <button class="create-task">Создать</button>
-            <button class="cancel-task">Отмена</button>
+            <button class="create-task" id="ok-create-task">Создать</button>
+            <button class="cancel-task" id="cancel-create-task">Отмена</button>
         </div>
        
         <!--   ЗАДАЧИ   -->
@@ -136,75 +125,12 @@
                 <div class="mainTitle">
                     Мои задачи
                 </div>
-                <ul>
-                    <li class="item-task">
-                        <div class="task-block">
-                            <div class="status"></div>
-                            <input type="checkbox" class="check-task" id="checkbox1">
-                            <label for="checkbox1"><span class="task-text">Нарисовать спрайт персонажа ГГ</span></label>
-
-                            <div class="tasks-right-block">
-                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
-                                <span class="task-date">20.20.2020</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-task">
-                        <div class="task-block">
-                            <div class="status"></div>
-                            <input type="checkbox" class="check-task" id="checkbox2">
-                            <label for="checkbox2"><span class="task-text">Нарисовать еще один спрайт</span></label>
-
-                            <div class="tasks-right-block">
-                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
-                                <span class="task-date">20.20.2020</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
+                <ul id="mainMyTaskContainer"></ul>
 
                 <div class="mainTitle">
                     Задачи работников
                 </div>
-                <ul>
-                    <li class="item-task">
-                        <div class="task-block">
-                            <div class="status"></div>
-                            <input type="checkbox" class="check-task" id="checkbox4">
-                            <label for="checkbox4"><span class="task-text">Пожалуй еще один сппрайт нам не помешает</span></label>
-
-                            <div class="tasks-right-block">
-                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
-                                <span class="task-date">20.20.2020</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-task">
-                        <div class="task-block">
-                            <div class="status"></div>
-                            <input type="checkbox" class="check-task" id="checkbox5">
-                            <label for="checkbox5"><span class="task-text">Нарисовать спрайт персонажа ГГГГГГГГГГ ГГГГГГ</span></label>
-
-                            <div class="tasks-right-block">
-                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
-                                <span class="task-date">20.20.2020</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="item-task">
-                        <div class="task-block">
-                            <div class="status"></div>
-                            <input type="checkbox" class="check-task" id="checkbox6">
-                            <label for="checkbox6"><span class="task-text">Нарисовать спрайт персонажа ГГ -> спрайтспрайтспрайтспрайт спрайтспрайт спрайтспрайт</span></label>
-
-                            <div class="tasks-right-block">
-                                <span class="project-text">Azazel is Coming/Дизайнеры</span>
-                                <span class="task-date">20.20.2020</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                <ul id="mainControlTaskContainer"></ul>
             </div>
         </div>
        
