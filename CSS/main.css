@@ -712,7 +712,7 @@
 
 }
 /* Конец новой задачи */
-.modal-invite-org, .modal-invite-proj {
+.modal-invite-org, .modal-invite-proj, .modal-more-worker {
     position: absolute;
     left: 20px;
     right: 20px;
@@ -730,4 +730,23 @@
     width: 100%;
     height: 100%;
     z-index: 15;
+}
+
+.mainTitleMoreProj {
+    position: relative;
+    font-size: 20px;
+    margin: 15px 0px 12px 30px;
+    font-weight: bold;
+    color: #91959f;
+}
+
+#mainProjMoreTitle {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.context-btn-moreProj {
+    display: inline-block;
+    width: 20px;
+    height: 10px;
 }

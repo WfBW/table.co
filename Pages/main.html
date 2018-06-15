@@ -47,8 +47,11 @@
         <div class="main-project-more" style="display: none">
             <header class="headerTitle">
                 <div class="back-btn" id="mainBackProjMore"></div>
-                <div class="mainTitle" id="mainProjMoreTitle">
-                    <div class="context-btn"><div class="context-content" id="createTaskBtn">Добавить задачу...</div></div>
+                <div class="mainTitleMoreProj">
+                    <span id="mainProjMoreTitle"></span>
+                    <div class="context-btn-moreProj">
+                        <div class="context-btn"><div class="context-content" id="createTaskBtn">Добавить задачу...</div></div>
+                    </div>
                 </div>
             </header>
             <img class="proj-mark-more" src="../IMG/mark.svg">
@@ -97,7 +100,7 @@
         </div>
         
         <!--   Создание новой задачи    -->
-        <div class="modal-addtask-form modal-form" style="display: block">
+        <div class="modal-addtask-form modal-form" style="display: none">
             <div class="modal-title">Новая задача</div>
             <textarea type="text" id="nameTaskNew" placeholder="Название задачи..." rows="3"></textarea>
             <label for="dateTaskNew" class="text14gray">Дата исполнения:</label>
@@ -191,6 +194,33 @@
                     </select>
                     <button class="modal-invite-btn" id="ok-invite-proj">Пригласить</button>
                     <button class="modal-cancel-btn" id="cancel-invite-proj">Отмена</button>
+                </div>
+                
+                <!-- Подробнее о работнике -->
+                <div class="modal-more-worker" style="display: none">
+                    <div class="modal-close-btn" id="workerMoreClose"></div>
+                    <!-- заголовок окна -->
+                    <div class="worker-title-block modal-title-block">
+                        <div class="worker-modal-title modal-title">Гусаревич Илья</div>
+                        <div class="worker-modal-subtitle modal-sub-title">Александрович</div>
+                    </div>
+                    <img src="../../IMG/avatar.svg" alt="" class="worker-avatar-img avatar-img">
+                    <div class="worker-info-block info-block">
+                        <ul>
+                            <li>
+                                <label for="worker-phone">Номер телефона</label>
+                                <input type="text" id="worker-phone" readonly>
+                            </li>
+                            <li>
+                                <label for="worker-email">E-mail</label>
+                                <input type="text" id="worker-email" readonly>
+                            </li>
+                            <li>
+                                <label for="worker-aboutUs">О себе</label>
+                                <textarea type="text" id="worker-aboutUs" rows="6" readonly></textarea>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div> <!-- Конец Список работников -->

@@ -205,7 +205,7 @@ progress::-webkit-progress-value {
     transition: all 0.4s ease-out;
 }
 
-.context-btn:hover .context-content {
+.context-btn:hover .context-content,  .context-btn-moreProj:hover .context-content {
 	display: block;
 }
 
