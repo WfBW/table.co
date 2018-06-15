@@ -189,7 +189,7 @@
 }
 
 .dead-date {
-    font-size: 14px;
+    font-size: 18px;
     color: #3E3E3E;
 }
 
@@ -266,13 +266,7 @@
     top: 5px;
     left: -20px;
 }
-.groupOut-btn {
-    width: 35px;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-}
+
 /* конец организаций */
 
 /* задачи */
@@ -712,24 +706,40 @@
 
 }
 /* Конец новой задачи */
-.modal-invite-org, .modal-invite-proj, .modal-more-worker {
+.modal-invite-org, .modal-invite-proj, .modal-more-worker, .modal-create-org {
     position: absolute;
-    left: 20px;
-    right: 20px;
-    top: 20px;
-    padding: 10px;
+    left: 35%;
+    right: 35%;
+    top: 30%;
+    padding: 15px;
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 3px 20px -10px #000;
 }
 
-.modalSt2 {
-    position: absolute;
-    top: 0px;
-    left: 0px;
+.modal-invite-org input, .modal-invite-proj input, .modal-create-org input {
     width: 100%;
-    height: 100%;
-    z-index: 15;
+    font-size: 15px;
+    padding: 8px 10px;
+    border: 1px solid #C4CAD8;
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+    color: #3e3e3e;
+}
+
+.main-modal-block button {
+    max-width: 140px;
+    width: 48%;
+    margin-right: 0px;
+}
+
+.main-modal-block .modal-cancel-btn {
+    float: right;
+}
+
+#loginUserIO::-webkit-calendar-picker-indicator {
+    display: none;
 }
 
 .mainTitleMoreProj {
@@ -750,3 +760,58 @@
     width: 20px;
     height: 10px;
 }
+
+/* кнопки в организациях */
+.myOrg > .block-content > .btn-content {
+	display: none;
+}
+
+.myOrgControl > .block-content > .btn-content {
+	left: 95px;
+}
+
+.groupOut-btn {
+    display: none;
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.orgSetBlock {
+    display: none;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 15px;
+    right: 16px;
+    cursor: pointer;
+    background-image: url(../IMG/settings-work-tool.svg);
+}
+
+.myOrg .groupOut-btn {
+	display: block;
+}
+
+.myOrgControl .orgSetBlock {
+	display: block;
+}
+/* конец кнопки в организациях */
+
+.main-task-block .mainTitle {
+	width: auto;
+}
+
+/* ЗАГлУШКИ */
+.myProj:empty, .myProjControl:empty, 
+#mainMyTaskContainer:empty, #mainControlTaskContainer:empty,
+.myOrg:empty, .myOrgControl:empty {
+    width: 100px;
+    height: 100px;
+    background: rgba(196, 202, 216, 0.6);
+    border-radius: 5px;
+    margin: 0 30px;
+}
+/* КОНЕЦ ЗАГРУШКИ */

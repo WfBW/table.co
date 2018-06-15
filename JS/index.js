@@ -87,6 +87,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     mainOrganizationBlock = document.querySelector(".main-organization-block"),
                     mainProjectBlock = document.querySelector(".projectList"),
                     
+                    // модальная форма main
+                    mainModalBlock = document.querySelector(".main-modal-block"),
+                    
                     // подробнее о проекте
                     backProjMore = document.querySelector("#mainBackProjMore"),
                     mainProjMore = document.querySelector(".main-project-more"),
@@ -153,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         });
                         
-                        modal.style.display = "block";
+                        mainModalBlock.style.display = "block";
                         addTaskForm.style.display = "block";
                         
                         btnNewTaskOk.onclick = function() {
@@ -163,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                      "&dateTask="+dateTaskNew.value+"&imp="+impTaskNewSection.value+
                                     "&id_user="+workerTaskNewSection.value, function(response){
                                     addTaskForm.style.display = "none";
-                                    modal.style.display = "none";
+                                    mainModalBlock.style.display = "none";
                                     nameTaskNew.value = "";
                                     dateTaskNew.value = "";
                                     impTaskNewSection.value = "";
@@ -178,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                         btnNewTaskCancel.onclick = function () {
                             addTaskForm.style.display = "none";
-                            modal.style.display = "none";
+                            mainModalBlock.style.display = "none";
                             nameTaskNew.value = "";
                             dateTaskNew.value = "";
                             impTaskNewSection.value = "";
@@ -203,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             "<span class=\"name-company text14gray\">"+ projId.org +"</span>"+
                         "</div>"+
                         "<div class=\"deadline\">"+
-                            "<span class=\"caption\">Дедлайн:</span>"+
+                            "<span class=\"caption\">Дедлайн: </span>"+
                             "<span class=\"dead-date\">"+ projId.date +"</span>"+
                         "</div>"+
                         "<div class=\"tz\">"+
@@ -350,6 +353,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 "value=\""+ projNameList[i].id_proj +"\">"+ projNameList[i].name +"</option>";
                             }
                             workerInviteProj.style.display = "block";
+                            mainModalBlock.style.display = "block";
                         });
 
                         btnInProjOk.onclick = function() {
@@ -358,6 +362,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 "login="+user.login+"&password="+user.password+"&id_org="+idOrg+"&id_user="
                                      +idWorker+"&id_proj="+projNameSection.value, function(response){
                                     workerInviteProj.style.display = "none";
+                                    mainModalBlock.style.display = "none";
                                     projNameSection.value = "";
                                 });
                             } else {
@@ -367,6 +372,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         btnInProjCancel.onclick = function() {
                             workerInviteProj.style.display = "none";
+                            mainModalBlock.style.display = "none";
                             projNameSection.value = "";
                         };
                     };
@@ -381,9 +387,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.querySelector("#worker-aboutUs").value = workerList[i].about;
 
                         workerMoreBlock.style.display = "block";
+                        mainModalBlock.style.display = "block";
 
                         document.querySelector("#workerMoreClose").onclick = function() {
                             workerMoreBlock.style.display = "none";
+                            mainModalBlock.style.display = "none";
                         };
                     };
 
@@ -411,6 +419,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                         "<button class=\"member-more-btn\" id=\"workerMore"+workerList[i].id_user+"\">Подробнее...</button>"+
                                     "</div>"+
                                 "</li>";
+                            }
+                            for(var i = 0; i < workerList.length; i++){
                                 document.querySelector("#worker"+workerList[i].id_user).onclick = addWorkerInProj(workerList[i].id_user);
                                 document.querySelector("#workerMore"+workerList[i].id_user).onclick = workerMore(i);
                             }
@@ -436,18 +446,21 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                         });
                         workerInviteOrg.style.display = "block";
+                        mainModalBlock.style.display = "block";
 
                         btnInOrgCancel.onclick = function() {
                             workerInviteOrg.style.display = "none";
+                            mainModalBlock.style.display = "none";
                             loginInOrgInput.value = "";
                         };
 
                         btnInOrgOk.onclick = function() {
                             if(loginInOrgInput.value !== ""){
-                                ajax("POST", "http://tableco.ad-best.ru/php/org/addUser.php", false,
+                                ajax("POST", "#", false,
                                 "login="+user.login+"&password="+user.password+"&id_org="+idOrg+"&loginUser="+loginInOrgInput.value, function(response){
                                     workerListGenerate();
                                     workerInviteOrg.style.display = "none";
+                                    mainModalBlock.style.display = "none";
                                     loginInOrgInput.value = "";
                                 });
                             } else {
@@ -469,6 +482,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         "<div class=\"title-block\">"+
                             "<span class=\"caption\">"+ orgList.name +"</span><br>"+
                             "<img class=\"groupOut-btn\" src=\"../IMG/GroupOut.svg\">"+
+                            "<div class=\"context-btn orgSetBlock\">"+
+                                "<div class=\"context-content orgSet-btn\">Удалить организацию...</div>"+
+                            "</div>"+
                         "</div>"+
                         "<hr>"+
                         "<div class=\"manager\">"+
@@ -513,12 +529,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         myOrg.innerHTML = "";
                         myOrgControl.innerHTML = "";
                         
+                        var org;
+                        
                         for(var i=0; i < organizationList[0].length; i++) {
                             orgItem(myOrg, organizationList[0][i]);
                             caruselHuakinOrg.style.width = (caruselHuakinOrg.offsetWidth + 390) + "px";
                         }
                         for(var i=0; i < organizationList[0].length; i++) {
-                            var org = organizationList[0][i];
+                            org = organizationList[0][i];
                             document.querySelector("#org"+org.id_org).addEventListener('click', function (){
                                 moreOrg(org.id_org, org);  
                             });
@@ -529,7 +547,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             caruselHuakinOrg.style.width = (caruselHuakinOrg.offsetWidth + 390) + "px";
                         }
                         for(var i=0; i < organizationList[1].length; i++) {
-                            var org = organizationList[1][i];
+                            org = organizationList[1][i];
                             document.querySelector("#org"+org.id_org).addEventListener('click', function (){
                                 moreOrg(org.id_org, org);  
                             });
@@ -540,16 +558,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 // создание новой организации
                 btnNewOrg.onclick = function () {
-                    modal.style.display = "block";
                     modalNewOrg.style.display = "block";
+                    mainModalBlock.style.display = "block";
                     var nameNewOrg = document.querySelector("#nameNewOrg");
                     document.querySelector("#createNewOrg").onclick = function () {
                         if(nameNewOrg.value !== "") {
                             ajax("POST", "http://tableco.ad-best.ru/php/org/addOrg.php", false,
                             "login="+user.login+"&password="+user.password+"&name="+nameNewOrg.value, function(response){
                                 orgGenerate();
-                                modal.style.display = "none";
                                 modalNewOrg.style.display = "none";
+                                mainModalBlock.style.display = "none";
                             });
                         } else {
                             showInputsError("Поле не должно быть пустое", 2);
@@ -557,8 +575,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                     document.querySelector("#cancelNewOrg").onclick = function () {
                         nameNewOrg.nodeValue = "";
-                        modal.style.display = "none";
                         modalNewOrg.style.display = "none";
+                        mainModalBlock.style.display = "none";
                     };
                 };
                 //   КОНЕЦ ДЕЙСТВИЙ С ОРГАНИЗАЦИЯМИ    //
@@ -686,22 +704,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 //Кнопка аватара
                 btnProfile.onclick = function openProfile() {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("get", "../Pages/modalPages/profile.html");
-                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-                    xhr.onreadystatechange = function () {
-                        if (xhr.readyState == 4 && xhr.status == 200) {
-                            modal.innerHTML = xhr.responseText;
-                            loadingBlock.style.display = "none";
-                            modal.style.display = "block"
-                            
-                            var btnCloseProfile = document.querySelector(".modal-close-btn");
-                            btnCloseProfile.onclick = function () {
-                                modal.style.display = "none";
-                            }
-                        }
+                    var aboutUserForm = document.querySelector(".aboutUserForm");
+                    mainModalBlock.style.display = "block";
+                    aboutUserForm.style.display = "block";
+                    
+                    document.querySelector("#aboutUserClose").onclick = function () {
+                        mainModalBlock.style.display = "none";
+                        aboutUserForm.style.display = "none";
                     }
-                    xhr.send();
                 };
             }
         };//конец ajax main.html

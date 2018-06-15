@@ -63,8 +63,9 @@
                 </div>
                 <div class="tz">
                     <span class="caption">Техническое задание:</span>
-                    <p class="tz-text" id="mainProjMoreTZ"></p>
+                    <p class="tz-text" id="mainProjMoreTZ" style="height: auto"></p>
                 </div>
+                <!--
                 <div class="zadachi-more">
                     <span class="caption-ul">Мои задачи:</span>
                     <div class="readyTask-text">Готово
@@ -82,6 +83,7 @@
                         </li>
                     </ul>
                 </div>
+                -->
             </div>
         </div>
 
@@ -97,6 +99,142 @@
                 <button class="create-project" id="ok-create-proj">Создать</button>
                 <button class="cancel-project" id="cancel-create-proj">Отмена</button>
             </div>
+        </div>
+        
+
+       
+        <!--   ЗАДАЧИ   -->
+        <div class="main-task-block" style="display: none">
+            <div class="content">
+                <div class="mainTitle">
+                    Мои задачи
+                </div>
+                <ul id="mainMyTaskContainer"></ul>
+
+                <div class="mainTitle">
+                    Задачи работников
+                </div>
+                <ul id="mainControlTaskContainer"></ul>
+            </div>
+        </div>
+       
+        <!--   ОРГАНИЗАЦИИ   -->
+        <div class="carusel main-organization-block" style="display: none">
+           <div class="carusel-huakin-org">
+               <!--Управление-->
+                <div class="main-block-inline">
+                    <div class="mainTitle">
+                        Управление
+                        <div class="context-btn"><div class="context-content org-context-btn">Создать организацию...</div></div>
+                    </div>
+                    <div class="myOrgControl"></div>
+                </div>
+                <!--Организации-->
+                <div class="main-block-inline">
+                    <div class="mainTitle">Организации</div>
+                    <div class="myOrg"></div>
+                </div>
+           </div>
+        </div>
+
+        <!-- Список работников -->
+        <div class="modal-worker-list" style="display: none">
+            <div class="modal-form">
+                <div class="modal-close-btn modal-workerlist-close"></div>
+                <div class="intoteam-btn modal-intoteam-btn"></div>
+                <div class="modal-title-block">
+                    <div class="modal-title" id="workNameOrg"></div>
+                    <div class="project-sub-title modal-sub-title" id="workNameMemb"></div>
+                </div> 
+                <ul class="member-list"></ul>
+            </div>
+        </div> <!-- Конец Список работников -->
+    </div> <!--  Конец Центральный блок отображения  -->
+    
+    <!--  Блок для модальных окон  -->
+    <div class="main-modal-block" style="display: none">
+        <!-- форма о пользователе -->
+        <div class="modal-form aboutUserForm" style="display: none">
+            <div class="modal-close-btn" id="aboutUserClose"></div>
+            <div class="profile-set-btn"></div>
+            <div class="modal-title-block">
+                <div class="modal-title">Горбачев Максим</div>
+                <div class="modal-sub-title">Сергеевич</div>
+            </div>
+            <div class="profile-avatar-block">
+                <img src="../../IMG/avatar.svg" alt="" class="avatar-img">
+                <button class="profile-editava-btn">Сменить фото профиля</button>
+            </div>
+            <div class="profile-info-block info-block">
+                <ul>
+                    <li>
+                        <label for="profile-phone">Номер телефона</label>
+                        <input type="text" value="+79964490202" id="profile-phone">
+                    </li>
+                    <li>
+                        <label for="profile-email">E-mail</label>
+                        <input type="text" value="dedMaksim@gmail.com" id="profile-email">
+                    </li>
+                    <li>
+                        <label for="profile-aboutUs">О себе</label>
+                        <textarea type="text" id="profile-aboutUs" rows="6">Дополнительная информация отсутствует</textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!--      Приглашение в организацию      -->
+        <div class="modal-invite-org" style="display: none">
+            <div class="modal-context-title">Приглашение в команду</div>
+            <input type="text" id="loginUserIO" list="dataLUIO" class="modal-context-input" autofocus placeholder="Логин пользователя">
+            <datalist id="dataLUIO"></datalist>
+            <button class="modal-invite-btn" id="ok-invite-org">Пригласить</button>
+            <button class="modal-cancel-btn" id="cancel-invite-org">Отмена</button>
+        </div>
+
+        <!--     Приглашение в проект       -->
+        <div class="modal-invite-proj" style="display: none">
+            <div class="modal-context-title">Приглашение</div>
+            <select name="projectName" id="projectNameIP" class="modal-context-input">
+                <option value=""  disabled selected hidden>Проект</option>
+            </select>
+            <button class="modal-invite-btn" id="ok-invite-proj">Пригласить</button>
+            <button class="modal-cancel-btn" id="cancel-invite-proj">Отмена</button>
+        </div>
+
+        <!-- Подробнее о работнике -->
+        <div class="modal-more-worker" style="display: none">
+            <div class="modal-close-btn" id="workerMoreClose"></div>
+            <!-- заголовок окна -->
+            <div class="worker-title-block modal-title-block">
+                <div class="worker-modal-title modal-title">Гусаревич Илья</div>
+                <div class="worker-modal-subtitle modal-sub-title">Александрович</div>
+            </div>
+            <img src="../../IMG/avatar.svg" alt="" class="worker-avatar-img avatar-img">
+            <div class="worker-info-block info-block">
+                <ul>
+                    <li>
+                        <label for="worker-phone">Номер телефона</label>
+                        <input type="text" id="worker-phone" readonly>
+                    </li>
+                    <li>
+                        <label for="worker-email">E-mail</label>
+                        <input type="text" id="worker-email" readonly>
+                    </li>
+                    <li>
+                        <label for="worker-aboutUs">О себе</label>
+                        <textarea type="text" id="worker-aboutUs" rows="6" readonly></textarea>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Создание новой организации -->
+        <div class="modal-create-org" style="display: none" >
+            <div class="modal-context-title">Создание организации</div>
+            <input type="text" id="nameNewOrg" class="modal-context-input" placeholder="Название организации...">
+            <button class="modal-invite-btn" id="createNewOrg">Создать</button>
+            <button class="modal-cancel-btn" id="cancelNewOrg">Отмена</button>
         </div>
         
         <!--   Создание новой задачи    -->
@@ -121,108 +259,5 @@
             <button class="create-task" id="ok-create-task">Создать</button>
             <button class="cancel-task" id="cancel-create-task">Отмена</button>
         </div>
-       
-        <!--   ЗАДАЧИ   -->
-        <div class="main-task-block" style="display: none">
-            <div class="content">
-                <div class="mainTitle">
-                    Мои задачи
-                </div>
-                <ul id="mainMyTaskContainer"></ul>
-
-                <div class="mainTitle">
-                    Задачи работников
-                </div>
-                <ul id="mainControlTaskContainer"></ul>
-            </div>
-        </div>
-       
-        <!--   ОРГАНИЗАЦИИ   -->
-        <div class="carusel main-organization-block" style="display: none">
-           <div class="carusel-huakin-org">
-                <!--Организации-->
-                <div class="main-block-inline">
-                    <div class="mainTitle">Организации</div>
-                    <div class="myOrg"></div>
-                </div>
-                <!--Управление-->
-                <div class="main-block-inline">
-                    <div class="mainTitle">
-                        Управление
-                        <div class="context-btn"><div class="context-content org-context-btn">Создать организацию...</div></div>
-                    </div>
-                    <div class="myOrgControl"></div>
-                </div>
-           </div>
-        </div>
-        
-        <!-- Создание новой организации -->
-        <div class="modal-create-org modal-form" style="display: none; z-index: 15" >
-            <div class="modal-context-title">Создание организации</div>
-            <input type="text" id="nameNewOrg" placeholder="Название организации...">
-            <button class="modal-invite-btn" id="createNewOrg">Создать</button>
-            <button class="modal-cancel-btn" id="cancelNewOrg">Отмена</button>
-        </div>
-        
-        <!-- Список работников -->
-        <div class="modal-worker-list" style="display: none">
-            <div class="modal-form">
-                <div class="modal-close-btn modal-workerlist-close"></div>
-                <div class="intoteam-btn modal-intoteam-btn"></div>
-                <div class="modal-title-block">
-                    <div class="modal-title" id="workNameOrg"></div>
-                    <div class="project-sub-title modal-sub-title" id="workNameMemb"></div>
-                </div> 
-                <ul class="member-list"></ul>
-                
-                <!--      Приглашение в организацию      -->
-                <div class="modal-invite-org" style="display: none">
-                    <div class="modal-context-title">Приглашение в команду</div>
-                    <input type="text" id="loginUserIO" list="dataLUIO" class="modal-context-input"  placeholder="Логин пользователя">
-                    <datalist id="dataLUIO">
-                        
-                    </datalist>
-                    <button class="modal-invite-btn" id="ok-invite-org">Пригласить</button>
-                    <button class="modal-cancel-btn" id="cancel-invite-org">Отмена</button>
-                </div>
-                
-                <!--     Приглашение в проект       -->
-                <div class="modal-invite-proj" style="display: none">
-                    <div class="modal-context-title">Приглашение</div>
-                    <select name="projectName" id="projectNameIP" class="modal-context-input">
-                        <option value=""  disabled selected hidden>Проект</option>
-                    </select>
-                    <button class="modal-invite-btn" id="ok-invite-proj">Пригласить</button>
-                    <button class="modal-cancel-btn" id="cancel-invite-proj">Отмена</button>
-                </div>
-                
-                <!-- Подробнее о работнике -->
-                <div class="modal-more-worker" style="display: none">
-                    <div class="modal-close-btn" id="workerMoreClose"></div>
-                    <!-- заголовок окна -->
-                    <div class="worker-title-block modal-title-block">
-                        <div class="worker-modal-title modal-title">Гусаревич Илья</div>
-                        <div class="worker-modal-subtitle modal-sub-title">Александрович</div>
-                    </div>
-                    <img src="../../IMG/avatar.svg" alt="" class="worker-avatar-img avatar-img">
-                    <div class="worker-info-block info-block">
-                        <ul>
-                            <li>
-                                <label for="worker-phone">Номер телефона</label>
-                                <input type="text" id="worker-phone" readonly>
-                            </li>
-                            <li>
-                                <label for="worker-email">E-mail</label>
-                                <input type="text" id="worker-email" readonly>
-                            </li>
-                            <li>
-                                <label for="worker-aboutUs">О себе</label>
-                                <textarea type="text" id="worker-aboutUs" rows="6" readonly></textarea>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div> <!-- Конец Список работников -->
-    </div> <!--  Конец Центральный блок отображения  -->
+    </div>
 </div>
