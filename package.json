@@ -1,13 +1,13 @@
 {
-    "app_name": "table.co",
-    "author": "Nameless team",
+    "app_name": "Table.Co",
+    "author": "ded.maksim",
     "keywords": [
         "manager"
     ],
     "license": "MIT",
-    "main": "spa.html",
+    "main": "index.html",
     "name": "Table.Co",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "webexe_settings": {
         "download_dir": "D:\\Project\\nwjs-v0.29.4-win-x64",
         "force_download": false,

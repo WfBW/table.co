@@ -100,9 +100,7 @@
                 <button class="cancel-project" id="cancel-create-proj">Отмена</button>
             </div>
         </div>
-        
 
-       
         <!--   ЗАДАЧИ   -->
         <div class="main-task-block" style="display: none">
             <div class="content">
@@ -156,7 +154,9 @@
         <!-- форма о пользователе -->
         <div class="modal-form aboutUserForm" style="display: none">
             <div class="modal-close-btn" id="aboutUserClose"></div>
-            <div class="profile-set-btn"></div>
+            <div class="profile-set-btn">
+                <div class="context-btn" style="background: none"><div class="context-content" id="logOutBtn">Вход из аккаунта</div></div>
+            </div>
             <div class="modal-title-block">
                 <div class="modal-title">Горбачев Максим</div>
                 <div class="modal-sub-title">Сергеевич</div>
@@ -203,7 +203,7 @@
         </div>
 
         <!-- Подробнее о работнике -->
-        <div class="modal-more-worker" style="display: none">
+        <div class="modal-more-worker modal-form" style="display: none">
             <div class="modal-close-btn" id="workerMoreClose"></div>
             <!-- заголовок окна -->
             <div class="worker-title-block modal-title-block">
@@ -258,6 +258,13 @@
 
             <button class="create-task" id="ok-create-task">Создать</button>
             <button class="cancel-task" id="cancel-create-task">Отмена</button>
+        </div>
+        
+        <!--   форма подтверждения да/нет     -->
+        <div class="modal-context-form modal-question-form" style="display: none">
+            <div class="modal-context-title">Вы уверены?</div>
+            <button class="question-btn yes-btn">Да</button>
+            <button class="question-btn no-btn right">Нет</button>
         </div>
     </div>
 </div>

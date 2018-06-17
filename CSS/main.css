@@ -208,7 +208,7 @@
 }
 
 .main-block-inline {
-    display: inline-block !important;
+    display: inline-grid !important;
 }
 /* конец проектов */
 
@@ -378,7 +378,8 @@
     text-align: center;
 }
 
-.profile-editava-btn {
+.main-modal-block .profile-editava-btn {
+    width: auto;
     padding: 8px 12px;
     color: #299EFF;
     font-weight: bold;
@@ -386,6 +387,8 @@
     background-color: #fff;
     border: 4px solid #299EFF;
     border-radius: 5px;
+    width: auto;
+    max-width: initial;
 }
 /* конц профиля пользователя */
 
@@ -658,7 +661,7 @@
 /* конец списка работников организации */
 .modal-worker-list {
     position: absolute;
-    left: -225px;
+    left: -240px;
     right: 0px;
     top: -60px;
     bottom: 0px;
@@ -706,7 +709,7 @@
 
 }
 /* Конец новой задачи */
-.modal-invite-org, .modal-invite-proj, .modal-more-worker, .modal-create-org {
+.modal-invite-org, .modal-invite-proj, .modal-create-org {
     position: absolute;
     left: 35%;
     right: 35%;
@@ -717,7 +720,12 @@
     box-shadow: 0 3px 20px -10px #000;
 }
 
-.modal-invite-org input, .modal-invite-proj input, .modal-create-org input {
+.modal-more-worker {
+	top: 70px;
+    width: 520px;
+}
+
+.modal-invite-org input, .modal-invite-proj select, .modal-create-org input {
     width: 100%;
     font-size: 15px;
     padding: 8px 10px;
@@ -806,12 +814,37 @@
 
 /* ЗАГлУШКИ */
 .myProj:empty, .myProjControl:empty, 
-#mainMyTaskContainer:empty, #mainControlTaskContainer:empty,
 .myOrg:empty, .myOrgControl:empty {
-    width: 100px;
-    height: 100px;
-    background: rgba(196, 202, 216, 0.6);
-    border-radius: 5px;
-    margin: 0 30px;
+    width: 360px;
+    height: 460px;
+    margin: 10px 0 0 30px;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: contain;
+}
+.myProj:empty {
+    background-image: url(../IMG/stubMyProj.svg);
+}
+.myProjControl:empty {
+    background-image: url(../IMG/stubControlProj.svg);
+}
+.myOrg:empty {
+    background-image: url(../IMG/stubMyOrg.svg);
+}
+.myOrgControl:empty {
+    background-image: url(../IMG/stubControlOrg.svg);
+}
+
+#mainMyTaskContainer:empty, #mainControlTaskContainer:empty {
+    width: 100%;
+    height: 130px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#mainMyTaskContainer:empty {
+    background-image: url(../IMG/stubMyTask.png);
+}
+#mainControlTaskContainer:empty {
+    background-image: url(../IMG/stubControlTask.png);
 }
 /* КОНЕЦ ЗАГРУШКИ */
