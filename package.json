@@ -9,12 +9,17 @@
     "name": "Table.Co",
     "version": "0.1.0",
     "webexe_settings": {
+        "blacklist": "",
+        "custom_script": "",
         "download_dir": "D:\\Project\\nwjs-v0.29.4-win-x64",
+        "export_dir": "output",
         "force_download": false,
         "nw_compression_level": 0,
         "nw_version": "0.29.4",
+        "output_pattern": "",
         "sdk_build": true,
         "uncompressed_folder": false,
+        "whitelist": "",
         "windows-x64": true
     },
     "webkit": {},

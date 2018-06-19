@@ -6,11 +6,12 @@
         "export_dir": "output",
         "force_download": false,
         "nw_compression_level": 0,
-        "nw_version": "0.29.4",
+        "nw_version": "0.31.0",
         "output_pattern": "",
         "sdk_build": true,
         "uncompressed_folder": false,
         "whitelist": "",
+        "windows-x32": false,
         "windows-x64": true
     }
 }

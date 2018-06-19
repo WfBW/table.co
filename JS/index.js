@@ -43,16 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, time * 1000);
     };
     
-    function proj(idProj, nameProj, tzProj, dateDead, idUser, idOrg, imp) {
-        this.idProj = idProj;
-        this.nameProj = nameProj;
-        this.tzProj = nameProj;
-        this.dateDead = dateDead;
-        this.idUser = idUser;
-        this.idOrg = idOrg;
-        this.imp = imp;
-    };
-    
     function ajax(metod, link, asink, data, callback) {
         var xhr = new XMLHttpRequest();
         xhr.open(metod, link, asink);
@@ -247,11 +237,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                     ajax("POST", "http://tableco.ad-best.ru/php/proj/showOrgList.php", false, "login="+user.login+"&password="+user.password, function(response) {
                         if (response == -1 || undefined) {
-                            //orgListNewProj.innerHTML = "<option value=\"\" disabled selected hidden>У вас нет организаций</option>";
+                            orgListNewProj.innerHTML = "<option value=\"\" disabled selected hidden>У вас нет организаций</option>";
                         } else {
                             var orgListProj = JSON.parse(response);
-                            alert(orgListProj[0].name_org);
-                            for(var i = 0; i < orgListProj.lenght; i++){
+                            for(var i = 0; i < orgListProj.length; i++){
                                 orgListNewProj.innerHTML += "<option value=\""+ orgListProj[i].id_org +"\">"+ orgListProj[i].name_org +"</option>";
                             }
                         }
@@ -271,9 +260,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                 tzProjectInput.value = "";
                                 dateProjectInput.value = "";
                                 orgListNewProj.value = "";
+                                showInputsError("Проект успешно добавлен", 2, 1);
                             });
                         } else {
-                            showInputsError("Все поля должны быть заполнены", 2);
+                            showInputsError("Все поля должны быть заполнены", 2, 0);
                         }
                     };
                     
@@ -292,38 +282,46 @@ document.addEventListener("DOMContentLoaded", function () {
                     //начало ajax получение проектов
                     ajax("POST", "http://tableco.ad-best.ru/php/proj/getProjData.php", false, 
                          "login="+user.login+"&password="+user.password, function(response) {
+
                         // ответ сервера в формате JSON
                         projectList = JSON.parse(response);
-
                         //контейнер с проектами
                         var myProj = document.querySelector(".myProj");
                         //контейнер с управлением
                         var myProjControl = document.querySelector(".myProjControl");
 
                         var caruselHuakin = document.querySelector(".carusel-huakin-proj");
-                        
+
                         myProj.innerHTML = "";
                         myProjControl.innerHTML = "";
-                        
+
                         var pr;
-                        // генерация списка
-                        for(var i=0; i < projectList[0].length; i++) {
-                            projItem(myProj, projectList[0][i]);
+                        if (projectList[0] == undefined) {
+                            console.log("Проектов в которых я состою нет");
+                        } else {
+                            // генерация списка
+                            for (var i = 0; i < projectList[0].length; i++) {
+                                projItem(myProj, projectList[0][i]);
+                            }
+                            // присваивания события кнопкам
+                            for (var i = 0; i < projectList[0].length; i++) {
+                                pr = projectList[0][i];
+                                document.querySelector("#proj" + pr.id_proj).onclick = projMore(pr.id_proj, pr);
+                            }
                         }
-                        // присваивания события кнопкам
-                        for(var i=0; i < projectList[0].length; i++) {
-                            pr = projectList[0][i];
-                            document.querySelector("#proj"+pr.id_proj).onclick = projMore(pr.id_proj, pr);
+
+                        if (projectList[1] == undefined) {
+                            console.log("Моих Проектовнет");
+                        } else {
+                            for (var i = 0; i < projectList[1].length; i++) {
+                                projItem(myProjControl, projectList[1][i]);
+                            }
+                            for (var i = 0; i < projectList[1].length; i++) {
+                                pr = projectList[1][i];
+                                document.querySelector("#proj" + pr.id_proj).onclick = projMore(pr.id_proj, pr);
+                            }
                         }
-                        for(var i=0; i < projectList[1].length; i++) {
-                            projItem(myProjControl, projectList[1][i]);
-                        }
-                        for(var i=0; i < projectList[1].length; i++) {
-                            pr = projectList[1][i];
-                            document.querySelector("#proj"+pr.id_proj).onclick = projMore(pr.id_proj, pr); 
-                        }
-                        
-                        caruselHuakin.style.width = (400 * ((projectList[0].length==0?1:projectList[0].length) + (projectList[1].length==0?1:projectList[1].length))) + "px";
+                        caruselHuakin.style.width = (400 * ((projectList[0] == undefined ? 1 : projectList[0].length) + (projectList[1] == undefined ? 1 : projectList[1].length))) + "px";
                     });
                     //конец ajax получение проектов
                 };
@@ -396,8 +394,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 workerInviteProj.style.display = "block";
                                 mainModalBlock.style.display = "block";
                                 
-                                alert(idWorker);
-
                                 btnInProjOk.onclick = function () {
                                     if (projNameSection.value !== "") {
                                         ajax("POST", "http://tableco.ad-best.ru/php/proj/addWorker.php", false,
@@ -509,6 +505,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         // кнопка закрыть в списке работников
                         workerListClose.onclick = function() {
+                            orgGenerate();
                             modal.style.display = "none";
                             workerListBlock.style.display = "none";
                         }; 
@@ -602,8 +599,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     //начало ajax получение организаций
                     ajax("POST", "http://tableco.ad-best.ru/php/org/getOrgData.php", false, 
                          "login="+user.login+"&password="+user.password, function(response) {
+                        console.log(response);
+                        
                         // ответ сервера в формате JSON
                         organizationList = JSON.parse(response);
+                        
+                        
 
                         //контейнер с проектами
                         var myOrg = document.querySelector(".myOrg");
@@ -616,23 +617,32 @@ document.addEventListener("DOMContentLoaded", function () {
                         myOrgControl.innerHTML = "";
                         
                         var org;
-                        for(var i=0; i < organizationList[0].length; i++) {
-                            orgItem(myOrg, organizationList[0][i]);
+                        if (organizationList[0] == undefined) {
+                            console.log("Организаций в которых я состою нет");
+                        } else {
+                            for (var i = 0; i < organizationList[0].length; i++) {
+                                orgItem(myOrg, organizationList[0][i]);
+                            }
+                            for (var i = 0; i < organizationList[0].length; i++) {
+                                org = organizationList[0][i];
+                                document.querySelector("#org" + org.id_org).onclick = moreOrg(org.id_org, org);
+                            }
                         }
-                        for(var i=0; i < organizationList[0].length; i++) {
-                            org = organizationList[0][i];
-                            document.querySelector("#org"+org.id_org).onclick = moreOrg(org.id_org, org);
+                        
+                        if (organizationList[1] == undefined) {
+                            console.log("Организаций в которых я состою нет");
+                        } else {
+                            for (var i = 0; i < organizationList[1].length; i++) {
+                                orgItem(myOrgControl, organizationList[1][i]);
+                            }
+                            for (var i = 0; i < organizationList[1].length; i++) {
+                                org = organizationList[1][i];
+                                document.querySelector("#org" + org.id_org).onclick = moreOrg(org.id_org, org);
+                                document.querySelector("#orgDel" + org.id_org).onclick = orgDel(org.id_org);
+                            }
                         }
-
-                        for(var i=0; i < organizationList[1].length; i++) {
-                            orgItem(myOrgControl, organizationList[1][i]);
-                        }
-                        for(var i=0; i < organizationList[1].length; i++) {
-                            org = organizationList[1][i];
-                            document.querySelector("#org"+org.id_org).onclick = moreOrg(org.id_org, org);
-                            document.querySelector("#orgDel"+org.id_org).onclick = orgDel(org.id_org);
-                        }
-                        caruselHuakinOrg.style.width = (400 * ((organizationList[0].length==0?1:organizationList[0].length) + (organizationList[1].length==0?1:organizationList[1].length))) + "px";
+                        
+                        caruselHuakinOrg.style.width = (400 * ((organizationList[0]==undefined?1:organizationList[0].length) + (organizationList[1]==undefined?1:organizationList[1].length))) + "px";
                     }); //конец ajax получение организаций
                 };
                 orgGenerate();
@@ -720,27 +730,28 @@ document.addEventListener("DOMContentLoaded", function () {
                         controlTaskContainer.innerHTML = "";
                         
                         var task;
-                        
-                        for(var i=0; i<tasksList.tocheck.length; i++) {
-                            taskItem(controlTaskContainer, tasksList.tocheck[i]);
+                        if (tasksList.tocheck == undefined) {
+                            console.log("Задач которые вы дали нет");
+                        } else {
+                            for (var i = 0; i < tasksList.tocheck.length; i++) {
+                                taskItem(controlTaskContainer, tasksList.tocheck[i]);
+                            }
+                            for (var i = 0; i < tasksList.tocheck.length; i++) {
+                                task = tasksList.tocheck[i];
+                                document.querySelector("#task" + task.id_task).oncheck = checkTask(task.id_task);
+                            }
                         }
-                        for(var i=0; i<tasksList.tocheck.length; i++) {
-                            task = tasksList.tocheck[i];
-                            document.querySelector("#task"+task.id_task).oncheck = checkTask(task.id_task);
-//                            document.querySelector("#task"+task.id_task).addEventListener('click', function(){
-//                                checkTask(task.id_task);
-//                            }); 
-                        }
-                        
-                        for(var i=0; i<tasksList.todo.length; i++) {
-                            taskItem(myTaskContainer, tasksList.todo[i]);
-                        }
-                        for(var i=0; i<tasksList.todo.length; i++) {
-                            task = tasksList.todo[i];
-                            document.querySelector("#task"+task.id_task).oncheck = checkTask(task.id_task);
-//                            document.querySelector("#task"+task.id_task).addEventListener('click', function(){
-//                                checkTask(task.id_task);
-//                            }); 
+
+                        if (tasksList.todo == undefined) {
+                            console.log("Задач которые вам дали нет");
+                        } else {
+                            for (var i = 0; i < tasksList.todo.length; i++) {
+                                taskItem(myTaskContainer, tasksList.todo[i]);
+                            }
+                            for (var i = 0; i < tasksList.todo.length; i++) {
+                                task = tasksList.todo[i];
+                                document.querySelector("#task" + task.id_task).oncheck = checkTask(task.id_task);
+                            }
                         }
                     });
                 };
