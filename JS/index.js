@@ -23,9 +23,19 @@ document.addEventListener("DOMContentLoaded", function () {
     
     ////////////////////////////
     //   служебные функции   //
-    function showInputsError(text, time) {
+    function showInputsError(text, time, color) {
         alertBlock.innerHTML = text;
 
+        switch (color) {
+            case 0:
+                alertBlock.style.backgroundColor = "red";
+                break;
+            case 1:
+                alertBlock.style.backgroundColor = "green";
+                break;
+            default:
+                alertBlock.style.backgroundColor = "red";
+        }
         alertBlock.style.visibility = "visible";
 
         setTimeout(function () {
@@ -54,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (xhr.status == 200) {
                     callback(xhr.responseText);
                 } else {
-                    showInputsError("Ошибка загрузки...", 5);
+                    showInputsError("Ошибка загрузки данных...", 5);
                 }
             }
         }
@@ -145,16 +155,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             var addTaskForm = document.querySelector(".modal-addtask-form");
 
-                            workerTaskNewSection.innerHTML = "";
                             workerTaskNewSection.innerHTML = "<option value=\"\" disabled selected hidden>Выберите исполнителя...</option>";
 
-                            ajax("POST", "#", false,
+                            ajax("POST", "http://tableco.ad-best.ru/php/tasks/getUsers.php", false,
                                 "login=" + user.login + "&password=" + user.password + "&id_proj=" + idProj,
                                 function (response) {
                                     var workerListNewTask = JSON.parse(response);
                                     for (var i = 0; i < workerListNewTask.length; i++) {
-                                        workerListNewTask += "<option value=\"" + workerListNewTask[i].id_user +
-                                            "\">" + workerListNewTask[i].name + "</option>";
+                                        workerTaskNewSection.innerHTML += "<option value=\"" + workerListNewTask[i].id_user + "\">" + workerListNewTask[i].fname + " " + workerListNewTask[i].name + "</option>";
                                     }
                                 });
 
@@ -163,10 +171,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             btnNewTaskOk.onclick = function () {
                                 if (nameTaskNew.value != "" && dateTaskNew.value != "" && impTaskNewSection.value != "" && workerTaskNewSection.value != "") {
-                                    ajax("POST", "#", false,
+                                    ajax("POST", "http://tableco.ad-best.ru/php/tasks/addTask.php", false,
                                         "login=" + user.login + "&password=" + user.password + "&nameTask=" + nameTaskNew.value +
                                         "&dateTask=" + dateTaskNew.value + "&imp=" + impTaskNewSection.value +
-                                        "&id_user=" + workerTaskNewSection.value,
+                                        "&id_user=" + workerTaskNewSection.value + "&id_proj=" + idProj,
                                         function (response) {
                                             addTaskForm.style.display = "none";
                                             mainModalBlock.style.display = "none";
@@ -176,6 +184,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                             workerTaskNewSection.value = "";
 
                                             generateTask();
+                                        
+                                            showInputsError("Задача успешно поставлена", 2, 1);
                                         });
                                 } else {
                                     showInputsError("Все поля должны быть заполнены", 2);
@@ -233,13 +243,17 @@ document.addEventListener("DOMContentLoaded", function () {
                     var btnNewProjOk = document.querySelector("#ok-create-proj");
                     var btnNewProjCancel = document.querySelector("#cancel-create-proj");
                     
-                    orgListNewProj.innerHTML = "";
                     orgListNewProj.innerHTML = "<option value=\"\" disabled selected hidden>Выберите организацию...</option>";
                     
-                    ajax("POST", "#", false, "login="+user.login+"&password="+user.password, function(response) {
-                        var orgListProj = JSON.parse(response);
-                        for(var i=0; i < orgListNewProj.lenght; i++){
-                            orgListNewProj.innerHTML += "<option value=\""+ orgListProj[i].id_org +"\">"+ orgListProj[i].name +"</option>";
+                    ajax("POST", "http://tableco.ad-best.ru/php/proj/showOrgList.php", false, "login="+user.login+"&password="+user.password, function(response) {
+                        if (response == -1 || undefined) {
+                            //orgListNewProj.innerHTML = "<option value=\"\" disabled selected hidden>У вас нет организаций</option>";
+                        } else {
+                            var orgListProj = JSON.parse(response);
+                            alert(orgListProj[0].name_org);
+                            for(var i = 0; i < orgListProj.lenght; i++){
+                                orgListNewProj.innerHTML += "<option value=\""+ orgListProj[i].id_org +"\">"+ orgListProj[i].name_org +"</option>";
+                            }
                         }
                     });
                                         
@@ -249,7 +263,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     btnNewProjOk.onclick = function() {
                         if(nameProjectInput.value != "" & tzProjectInput.value != "" 
                            & dateProjectInput.value != "" & orgListNewProj.value != "") {
-                            ajax("POST", "#", false, "login="+user.login+"&password="+user.password+"&nameProj="+nameProjectInput.value+"&tzProj="+tzProjectInput.value+"&dateProj="+dateProjectInput.value+"&id_org="+orgListNewProj.value, function(response){
+                            ajax("POST", "http://tableco.ad-best.ru/php/proj/addProj.php", false, "login="+user.login+"&password="+user.password+"&nameProj="+nameProjectInput.value+"&tzProj="+tzProjectInput.value+"&dateProj="+dateProjectInput.value+"&id_org="+orgListNewProj.value, function(response){
+                                projGenerate();
                                 mainProjNew.style.display = "none";
                                 mainProjectBlock.style.display = "block";
                                 nameProjectInput.value = "";
@@ -366,28 +381,32 @@ document.addEventListener("DOMContentLoaded", function () {
                                 var projNameSection = document.querySelector("#projectNameIP");
                                 var btnInProjOk = document.querySelector("#ok-invite-proj");
                                 var btnInProjCancel = document.querySelector("#cancel-invite-proj");
+                                
+                                projNameSection.innerHTML = "<option value=\"\"  disabled selected hidden>Проект</option>";
 
-                                ajax("POST", "#", false,
+                                ajax("POST", "http://tableco.ad-best.ru/php/org/showProjList.php", false,
                                     "login=" + user.login + "&password=" + user.password + "&id_org=" + idOrg,
                                     function (response) {
                                         var projNameList = JSON.parse(response);
                                         for (var i = 0; i < projNameList.length; i++) {
                                             projNameSection.innerHTML += "<option " +
-                                                "value=\"" + projNameList[i].id_proj + "\">" + projNameList[i].name + "</option>";
+                                            "value=\"" + projNameList[i].id_proj + "\">" + projNameList[i].name_proj + "</option>";
                                         }
                                     });
                                 workerInviteProj.style.display = "block";
                                 mainModalBlock.style.display = "block";
+                                
+                                alert(idWorker);
 
                                 btnInProjOk.onclick = function () {
                                     if (projNameSection.value !== "") {
-                                        ajax("POST", "http://tableco.ad-best.ru/php/org/inProj.php", false,
-                                            "login=" + user.login + "&password=" + user.password + "&id_org=" + idOrg + "&id_user=" +
-                                            idWorker + "&id_proj=" + projNameSection.value,
+                                        ajax("POST", "http://tableco.ad-best.ru/php/proj/addWorker.php", false,
+                                            "login=" + user.login + "&password=" + user.password + "&id_org=" + idOrg + "&id_proj=" + projNameSection.value + "&id_user=" + idWorker,
                                             function (response) {
                                                 workerInviteProj.style.display = "none";
                                                 mainModalBlock.style.display = "none";
                                                 projNameSection.value = "";
+                                                showInputsError("Работник успешно добавлен в проект", 3, 1);
                                             });
                                     } else {
                                         showInputsError("Выберите проект", 2);
@@ -471,12 +490,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             btnInOrgOk.onclick = function() {
                                 if(loginInOrgInput.value !== ""){
-                                    ajax("POST", "#", false,
+                                    ajax("POST", "http://tableco.ad-best.ru/php/org/addWorker.php", false,
                                     "login="+user.login+"&password="+user.password+"&id_org="+idOrg+"&loginUser="+loginInOrgInput.value, function(response){
-                                        workerListGenerate();
-                                        workerInviteOrg.style.display = "none";
-                                        mainModalBlock.style.display = "none";
-                                        loginInOrgInput.value = "";
+                                        if(response == 1) {
+                                            workerListGenerate();
+                                            workerInviteOrg.style.display = "none";
+                                            mainModalBlock.style.display = "none";
+                                            loginInOrgInput.value = "";
+                                        } else {
+                                            showInputsError("Ошибка добавления", 2);
+                                        }
                                     });
                                 } else {
                                     showInputsError("Заполните поле", 2);
@@ -495,16 +518,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 function orgItem (container, orgList) {
                     var projHtml = "";
                     var workHtml = "";
-                    ajax("POST", "#", false,
+                    ajax("POST", "http://tableco.ad-best.ru/php/org/showProjList.php", false,
                     "login=" + user.login + "&password=" + user.password + "&id_org=" + orgList.id_org,
                     function (response) {
-                        var projNameList = JSON.parse(response);
-                        for (var i = 0; i < 3; i++) {
-                            if(projNameList[i] !=undefined){
-                                projHtml += "<li>"+ projNameList[i].name +"</li>";
-                            } else {
-                                projHtml += "<li></li>";
-                                break;
+                        if(response == -1) {
+                            projHtml += "<li>Проектов нет</li>";
+                        } else {
+                            var projNameList = JSON.parse(response);
+                            for (var i = 0; i < 3; i++) {
+                                if(projNameList[i] !=undefined){
+                                projHtml += "<li>"+ projNameList[i].name_proj +"</li>";
+                                } else {
+                                    //projHtml += "<li></li>";
+                                    break;
+                                }
                             }
                         }
                     });
@@ -515,7 +542,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if(workerNameList[i] !=undefined) {
                                 workHtml += "<li>"+ workerNameList[i].fname +" "+ workerNameList[i].name +"</li>";
                             } else {
-                                workHtml += "<li></li>";
+                                //workHtml += "<li></li>";
                                 break;
                             }
                         }
@@ -641,7 +668,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // нажатие на checkbox задачи
                 function checkTask (idTask) {
                     return function() {
-                        ajax("POST", "#", false, "login="+user.login+"&password="+user.password+"&id_task="+idTask, function(response){
+                        ajax("POST", "http://tableco.ad-best.ru/php/tasks/checkTask.php", false, "login="+user.login+"&password="+user.password+"&id_task="+idTask, function(response){
                         // что должно происходить кроме отправки ajax??
                         });
                     }
@@ -649,7 +676,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // создание элемента списка задач
                 function taskItem (container, taskList) {
                     var colorStatus;
-                    switch (taskList.status) {
+                    switch (Number(taskList.imp)) {
                         case 0:
                             colorStatus = "#C4CAD8";
                             break;
@@ -669,10 +696,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         "<div class=\"task-block\">"+
                             "<div class=\"status\" style=\"background: "+ colorStatus +"\"></div>"+
                             "<input type=\"checkbox\" class=\"check-task\" id=\"task"+ taskList.id_task +
-                                "\""+(taskList.check?" checked":"")+">"+
-                            "<label for=\""+ taskList.id_task +"\"><span class=\"task-text\">"+ taskList.name +"</span></label>"+
-                            "<div class=\"tasks-right-block\">"+
-                                "<span class=\"project-text\">"+ taskList.name_proj +"</span>"+
+                                "\""+(taskList.complete==0?"":" checked")+">"+
+                            "<label for=\"task"+ taskList.id_task +"\"><span class=\"task-text\">"+ taskList.text +"</span></label>"+
+                            "<div class=\"tasks-right-block right\">"+
+                                "<span class=\"project-text\">"+ taskList.proj +"</span>"+
                                 "<span class=\"task-date\">"+ taskList.date +"</span>"+
                             "</div>"+
                         "</div>"+
@@ -681,7 +708,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
                 // генерация списка задач
                 function generateTask () {
-                    ajax("POST", "#", false, 
+                    ajax("POST", "http://tableco.ad-best.ru/php/tasks/getTasks.php", false, 
                          "login="+user.login+"&password="+user.password, function(response) {
                         tasksList = JSON.parse(response);
                         
@@ -694,22 +721,22 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                         var task;
                         
-                        for(var i=0; i<tasksList[0].length; i++) {
-                            taskItem(myTaskContainer, tasksList[0][i]);
+                        for(var i=0; i<tasksList.tocheck.length; i++) {
+                            taskItem(controlTaskContainer, tasksList.tocheck[i]);
                         }
-                        for(var i=0; i<tasksList[0].length; i++) {
-                            task = tasksList[0][i];
+                        for(var i=0; i<tasksList.tocheck.length; i++) {
+                            task = tasksList.tocheck[i];
                             document.querySelector("#task"+task.id_task).oncheck = checkTask(task.id_task);
 //                            document.querySelector("#task"+task.id_task).addEventListener('click', function(){
 //                                checkTask(task.id_task);
 //                            }); 
                         }
                         
-                        for(var i=0; i<tasksList[1].length; i++) {
-                            taskItem(controlTaskContainer, tasksList[1][i]);
+                        for(var i=0; i<tasksList.todo.length; i++) {
+                            taskItem(myTaskContainer, tasksList.todo[i]);
                         }
-                        for(var i=0; i<tasksList[1].length; i++) {
-                            task = tasksList[1][i];
+                        for(var i=0; i<tasksList.todo.length; i++) {
+                            task = tasksList.todo[i];
                             document.querySelector("#task"+task.id_task).oncheck = checkTask(task.id_task);
 //                            document.querySelector("#task"+task.id_task).addEventListener('click', function(){
 //                                checkTask(task.id_task);
