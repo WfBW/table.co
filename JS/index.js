@@ -282,9 +282,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     //начало ajax получение проектов
                     ajax("POST", "http://tableco.ad-best.ru/php/proj/getProjData.php", false, 
                          "login="+user.login+"&password="+user.password, function(response) {
-
-                        // ответ сервера в формате JSON
-                        projectList = JSON.parse(response);
+                            projectList = JSON.parse(response);
+                        
                         //контейнер с проектами
                         var myProj = document.querySelector(".myProj");
                         //контейнер с управлением
@@ -295,30 +294,32 @@ document.addEventListener("DOMContentLoaded", function () {
                         myProj.innerHTML = "";
                         myProjControl.innerHTML = "";
 
-                        var pr;
+                        
                         if (projectList[0] == undefined) {
                             console.log("Проектов в которых я состою нет");
                         } else {
+                            var pr1;
                             // генерация списка
                             for (var i = 0; i < projectList[0].length; i++) {
                                 projItem(myProj, projectList[0][i]);
                             }
                             // присваивания события кнопкам
                             for (var i = 0; i < projectList[0].length; i++) {
-                                pr = projectList[0][i];
-                                document.querySelector("#proj" + pr.id_proj).onclick = projMore(pr.id_proj, pr);
+                                pr1 = projectList[0][i];
+                                document.querySelector("#proj" + pr1.id_proj).onclick = projMore(pr1.id_proj, pr1);
                             }
                         }
 
                         if (projectList[1] == undefined) {
                             console.log("Моих Проектовнет");
                         } else {
+                            var pr2;
                             for (var i = 0; i < projectList[1].length; i++) {
                                 projItem(myProjControl, projectList[1][i]);
                             }
                             for (var i = 0; i < projectList[1].length; i++) {
-                                pr = projectList[1][i];
-                                document.querySelector("#proj" + pr.id_proj).onclick = projMore(pr.id_proj, pr);
+                                pr2 = projectList[1][i];
+                                document.querySelector("#proj" + pr2.id_proj).onclick = projMore(pr2.id_proj, pr2);
                             }
                         }
                         caruselHuakin.style.width = (400 * ((projectList[0] == undefined ? 1 : projectList[0].length) + (projectList[1] == undefined ? 1 : projectList[1].length))) + "px";
@@ -521,13 +522,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         if(response == -1) {
                             projHtml += "<li>Проектов нет</li>";
                         } else {
+                            console.log(response);
                             var projNameList = JSON.parse(response);
                             for (var i = 0; i < 3; i++) {
                                 if(projNameList[i] !=undefined){
                                 projHtml += "<li>"+ projNameList[i].name_proj +"</li>";
                                 } else {
                                     //projHtml += "<li></li>";
-                                    break;
+                                    return;
                                 }
                             }
                         }
@@ -539,8 +541,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if(workerNameList[i] !=undefined) {
                                 workHtml += "<li>"+ workerNameList[i].fname +" "+ workerNameList[i].name +"</li>";
                             } else {
-                                //workHtml += "<li></li>";
-                                break;
+                                return;
                             }
                         }
                     });
@@ -599,12 +600,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     //начало ajax получение организаций
                     ajax("POST", "http://tableco.ad-best.ru/php/org/getOrgData.php", false, 
                          "login="+user.login+"&password="+user.password, function(response) {
-                        console.log(response);
-                        
                         // ответ сервера в формате JSON
                         organizationList = JSON.parse(response);
-                        
-                        
 
                         //контейнер с проектами
                         var myOrg = document.querySelector(".myOrg");
@@ -679,7 +676,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 function checkTask (idTask) {
                     return function() {
                         ajax("POST", "http://tableco.ad-best.ru/php/tasks/checkTask.php", false, "login="+user.login+"&password="+user.password+"&id_task="+idTask, function(response){
-                        // что должно происходить кроме отправки ajax??
                         });
                     }
                 }
@@ -738,7 +734,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                             for (var i = 0; i < tasksList.tocheck.length; i++) {
                                 task = tasksList.tocheck[i];
-                                document.querySelector("#task" + task.id_task).oncheck = checkTask(task.id_task);
+                                document.querySelector("#task" + task.id_task).onchange = checkTask(task.id_task);
                             }
                         }
 
@@ -750,7 +746,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
                             for (var i = 0; i < tasksList.todo.length; i++) {
                                 task = tasksList.todo[i];
-                                document.querySelector("#task" + task.id_task).oncheck = checkTask(task.id_task);
+                                document.querySelector("#task" + task.id_task).onchange = checkTask(task.id_task);
                             }
                         }
                     });

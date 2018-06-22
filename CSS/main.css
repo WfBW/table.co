@@ -239,7 +239,9 @@
 } /* ./топ разработчиков */
 
 .myProject {
-    margin: 22px 0px;
+    position: absolute;
+    top: 90px;
+    /*margin: 22px 0px;*/
 }
 
 .myProject > ul {
@@ -265,6 +267,11 @@
     height: 7px;
     top: 5px;
     left: -20px;
+}
+
+.top-developer { 
+    position: absolute;
+    top: 200px;
 }
 
 /* конец организаций */
